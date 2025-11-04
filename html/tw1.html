@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-clifford: #da373d;
+        }
+        @layer base {
+            button {
+                @apply border-green-500 bg-green-300 px-2 rounded-md cursor-pointer hover:bg-green-400 hover:text-white 
+                active:ring-2 active:scale-105;
+            }
+        }
+
+        @layer utility {
+            .btn {
+                background-color: skyblue;
+            }
+        }
+    </style>
+</head>
+<body class="h-screen bg-green-100" grid places-items-center>
+    <div class="[&>button]:shadow-md [&>button]:hover:shadow-xl">
+        <button class="shadow-md">Button1</button>
+        <button class="btn text-white">Button2</button>
+        <button class="btn text-black">Button3</button>
+        <h1 class="text-3xl font-bold underline text-clifford animate-spinX">
+            Hello world!
+        </h1>
+        <div class="border mx-5 my-10 pt-3 pl-3 text-red-500">Div</div>
+    </div>
+</body>
+</html>
