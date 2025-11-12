@@ -8,12 +8,12 @@ avg([
   'xxx',
   5.67899,
   null,
-  20.9,
+  '20.9',
   1.005121,
   0,
   15.234,
   undefined,
-  0.5,
+  '0.5',
 ]);
 
 function avg(prices) {
@@ -21,10 +21,10 @@ function avg(prices) {
   let sum = 0;
 
   for (const price of prices) {
+    cnt++;
     if (price === null || isNaN(price)) continue;
 
-    sum += price * N * 100;
-    cnt++;
+    sum += price * N * 100; // * 연산자가 문자열이어도 숫자로 업캐스팅된다.
   }
 
   const ret = Math.trunc(sum / cnt / N) / 100;
