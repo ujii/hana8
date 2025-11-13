@@ -25,12 +25,11 @@ console.log('---------------------');
 const actions = ['입장', '입장', '입장', '퇴장', '입장', '퇴장']; // Status Queue
 
 //const { connect, disconnect, getCount } = currentCount(); // 변수명을 다르게 받고 싶으면 connect: conn 이런 식으로 받아야한다
-const { conn, disconn, getCnt } = currentCount(); // {}안의 값을 마음대로 해도 된다
+const [conn, disconn, get] = currentCount(); // {}안의 값을 마음대로 해도 된다
 
-console.log('🚀 ~ getCount:', getCount);
 for (const status of actions) {
-  if (status === '입장') connect();
-  else disconnect();
+  if (status === '입장') conn();
+  else disconn();
 }
 
 function currentCount() {
@@ -52,11 +51,12 @@ function currentCount() {
   //   },
   // };
 
-  return (
+  return [
     connect,
     disconnect,
     function () {
       return cnt;
-    }
-  );
+    },
+  ];
 }
+console.log('🚀 ~ cnt:', get());
