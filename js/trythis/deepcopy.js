@@ -29,8 +29,8 @@ function shallowCopy(obj) {
 // 2) 이하 deep copy
 const newKim2 = deepCopy(kim);
 newKim2.addr.city = 'Daegu';
-console.log('🚀 ~ newKim2:', JSON.stringify(newKim2, null, '    '));
 assert.notEqual(kim.addr.city, newKim2.addr.city);
+console.log('🚀 ~ newKim2:', JSON.stringify(newKim2, null, '    '));
 
 function deepCopy(obj) {
   if (obj === null || typeof obj !== 'object') return obj;
