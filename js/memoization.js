@@ -1,4 +1,5 @@
 const assert = require('assert');
+const { Console } = require('console');
 
 const memoizedTable = {};
 // {2: 2 * 1}

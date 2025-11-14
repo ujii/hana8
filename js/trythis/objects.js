@@ -47,7 +47,7 @@ console.log('pp >>> ', n.point, n.setPoint(1), n.setPoint2(1));
 
 console.log('================================================');
 
-// 연습문제
+// 프론트엔드 기초 연습문제 119p, 120p
 
 const arr = [100, 200, 300, 400, 500, 600, 700];
 for (const k in arr) {
