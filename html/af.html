@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Timer</title>
+  </head>
+  <body>
+    <div id="timer">00:00:000</div>
+    <button id="btn">START</button>
+    <script>
+      let msec = 0;
+      let timer;
+
+      const $btn = document.getElementById('btn');
+      const $timer = document.getElementById('timer');
+      $btn.addEventListener('click', function () {
+        console.log(this.innerText);
+        if (this.innerText === 'START') {
+          this.innerText = 'STOP';
+          timer = setInterval(() => {
+            msec++;
+            $timer.innerHTML = formatTime(++msec);
+          }, 10);
+        } else {
+          this.innerText = 'START';
+          setTimeout(() => clearInterval(timer), 1);
+        }
+      });
+
+      function formatTime(milis) {
+        const m = padNum(Math.trunc(milis / 60000), 2);
+        const s = padNum(Math.trunc((milis % 60000) / 1000), 2);
+        const ms = padNum(Math.trunc(milis % 1000), 3);
+        return `${m}:${s}:${ms}`;
+      }
+
+      function padNum(time, n) {
+        return time.toString().padStart(n, '0');
+      }
+    </script>
+  </body>
+</html>
