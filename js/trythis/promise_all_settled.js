@@ -1,3 +1,5 @@
+// 연습문제 296p, 297p
+
 const assert = require('assert');
 
 const randTime = (sec) =>
