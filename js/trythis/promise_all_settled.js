@@ -13,6 +13,7 @@ const promiseAllSettled = (parr) =>
     const results = [];
     let runCnt = 0;
     for (let i = 0; i < parr.length; i++) {
+      console.log("---", typeof parr[i])
       parr[i]
         .then((value) => {
           results[i] = { status: 'fulfilled', value };
