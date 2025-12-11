@@ -7,10 +7,9 @@ import Small from './ui/Small';
 type Prop = {
   session: Session;
   logout: () => void;
-  login: (userName: string, userAge: number) => void;
 };
 
-export default function My({ session, logout, login }: Prop) {
+export default function My({ session, logout }: Prop) {
   return (
     <>
       {session?.loginUser ? (
