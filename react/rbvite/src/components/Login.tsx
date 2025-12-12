@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from './ui/Button';
 import type { LoginFunction } from '../App';
+import LabelInput from './ui/LabelInput';
 
 type Props = {
   login: LoginFunction;
@@ -14,7 +15,7 @@ export default function Login({ login }: Props) {
     <div className='border border-red-300 p-3 rounded-lg'>
       <h1 className='text-2xl text-center font-medium'>Login</h1>
       <form className='space-y-3'>
-        <div>
+        {/* <div>
           <label htmlFor='name' className='test-sm text-gray-600'>
             Name
           </label>
@@ -26,8 +27,13 @@ export default function Login({ login }: Props) {
             className='w-full'
             required
           ></input>
-        </div>
-        <div>
+        </div> */}
+        <LabelInput
+          label='Name'
+          onChange={(e) => setName(e.target.value)}
+          placeholder='user name...'
+        />
+        {/* <div>
           <label htmlFor='age' className='test-sm text-gray-600'>
             Age
           </label>
@@ -39,7 +45,13 @@ export default function Login({ login }: Props) {
             className='w-full'
             required
           ></input>
-        </div>
+        </div> */}
+        <LabelInput
+          type='number'
+          label='Age'
+          onChange={(e) => setAge(+e.target.value)}
+          placeholder='user age...'
+        />
         <div className='text-center'>
           <Button
             onClick={() => login(name, age)}

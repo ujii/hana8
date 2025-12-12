@@ -45,6 +45,22 @@ function App() {
     setSession({ ...session, loginUser: { id: 1, name, age } });
   };
 
+  const removeItem = (id: number) => {
+    if (!confirm('Are you sure?')) return;
+
+    // 사용 권장
+    // setSession({
+    //   ...session,
+    //   cart: [...session.cart.filter((item) => item.id !== id)],
+    // });
+
+    // 좋은 코드 x
+    setSession({
+      ...session,
+      cart: session.cart.filter((item) => item.id !== id),
+    });
+  };
+
   // if ( x === undefined ) x가 정의되지 않았을 때에만 초기화
   //    x = 0;
   // function setAction(y) {
@@ -56,7 +72,12 @@ function App() {
   return (
     <div className='grid place-items-center h-screen'>
       <h1 className='text-3xl'>count: {count}</h1>
-      <My session={session} logout={logout} login={login} />
+      <My
+        session={session}
+        logout={logout}
+        login={login}
+        removeItem={removeItem}
+      />
 
       <div className='card'>
         <Hello

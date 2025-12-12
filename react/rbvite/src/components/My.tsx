@@ -1,15 +1,19 @@
+import { useState } from 'react';
 import type { LoginFunction, Session } from '../App';
 import Login from './Login';
 import Profile from './Profile';
 import Small from './ui/Small';
+import Button from './ui/Button';
 
 type Prop = {
   session: Session;
   logout: () => void;
   login: LoginFunction;
+  removeItem: (id: number) => void;
 };
 
-export default function My({ session, logout, login }: Prop) {
+export default function My({ session, logout, login, removeItem }: Prop) {
+  const [ses, setSession] = useState(session);
   return (
     <>
       {session?.loginUser ? (
@@ -23,6 +27,14 @@ export default function My({ session, logout, login }: Prop) {
           <li key={id}>
             <Small>{id}.</Small> {name}
             <Small>{price.toLocaleString()}원</Small>
+            <Button
+              onClick={() => removeItem(id)}
+              className='ml-2 px-1 py-0 text-sm bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-2xl 
+            active:scale-150 transition duration-300'
+            >
+              {' '}
+              x{' '}
+            </Button>
           </li>
         ))}
       </ul>
