@@ -17,9 +17,11 @@ export type Session = {
   cart: Item[];
 };
 
+export type LoginFunction = (name: string, age: number) => void;
+
 const DefaultSession: Session = {
-  // loginUser: null, // 로그아웃 테스트
-  loginUser: { id: 1, name: 'Hong', age: 33 }, // 로그인 테스트
+  loginUser: null, // 로그아웃 테스트
+  // loginUser: { id: 1, name: 'Hong', age: 33 }, // 로그인 테스트
   cart: [
     { id: 100, name: '라면', price: 3000 },
     { id: 101, name: '컵라면', price: 2000 },
@@ -29,10 +31,18 @@ const DefaultSession: Session = {
 
 function App() {
   const [count, setCount] = useState(0);
-  const [session, setSession] = useState(DefaultSession);
+  const [session, setSession] = useState<Session>(DefaultSession);
+
+  const plusCount = () => setCount((prevCount) => prevCount + 1);
+
   const logout = () => {
     // session.loginUser = null;
     setSession({ ...session, loginUser: null });
+  };
+
+  const login: LoginFunction = (name, age) => {
+    if (!name || !age) return alert('Input Name and Age');
+    setSession({ ...session, loginUser: { id: 1, name, age } });
   };
 
   // if ( x === undefined ) x가 정의되지 않았을 때에만 초기화
@@ -46,13 +56,13 @@ function App() {
   return (
     <div className='grid place-items-center h-screen'>
       <h1 className='text-3xl'>count: {count}</h1>
-      <My session={session} logout={logout} />
+      <My session={session} logout={logout} login={login} />
 
       <div className='card'>
         <Hello
           name={session.loginUser?.name}
           age={session.loginUser?.age}
-          setCount={setCount}
+          plusCount={plusCount}
         >
           반갑습니다
         </Hello>

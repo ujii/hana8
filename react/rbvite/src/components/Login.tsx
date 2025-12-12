@@ -1,25 +1,54 @@
 import { useState } from 'react';
-import type { LoginUser } from '../App';
 import Button from './ui/Button';
+import type { LoginFunction } from '../App';
 
-export default function Login() {
+type Props = {
+  login: LoginFunction;
+};
+
+export default function Login({ login }: Props) {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState(0);
+
   return (
-    <>
-      <div className='flex gap-4'>
+    <div className='border border-red-300 p-3 rounded-lg'>
+      <h1 className='text-2xl text-center font-medium'>Login</h1>
+      <form className='space-y-3'>
         <div>
-          <small>Name </small>
-          <form className='border border-gray-300 rounded px-2 py-1'>
-            <input type='text'></input>
-          </form>
+          <label htmlFor='name' className='test-sm text-gray-600'>
+            Name
+          </label>
+          <input
+            type='text'
+            id='name'
+            onChange={(e) => setName(e.target.value)}
+            placeholder='user name...'
+            className='w-full'
+            required
+          ></input>
         </div>
         <div>
-          <small> age </small>
-          <form className='border border-gray-300 rounded px-2 py-1'>
-            <input type='password'></input>
-          </form>
+          <label htmlFor='age' className='test-sm text-gray-600'>
+            Age
+          </label>
+          <input
+            type='number'
+            id='age'
+            onChange={(e) => setAge(+e.target.value)}
+            placeholder='user age...'
+            className='w-full'
+            required
+          ></input>
         </div>
-      </div>
-      <Button className='bg-gray-100 flex-auto'>Sign In</Button>
-    </>
+        <div className='text-center'>
+          <Button
+            onClick={() => login(name, age)}
+            className='bg-blue-500 text-white hover:bg-blue-600 w-full'
+          >
+            Login
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

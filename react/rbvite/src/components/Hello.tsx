@@ -8,7 +8,7 @@ import Button from './ui/Button';
 type Prop = PropsWithChildren<{
   name?: string;
   age?: number;
-  setCount: (cb: (c: number) => number) => void;
+  plusCount: () => void;
 }>;
 
 // T & {children: ReactNode;}
@@ -16,7 +16,7 @@ export default function Hello({
   name = 'guest',
   age,
   children,
-  setCount,
+  plusCount,
 }: Prop) {
   return (
     <div className='border border-red-300 p-3 text-center'>
@@ -25,10 +25,7 @@ export default function Hello({
         {age && <small className='text-sm'>({age})</small>}
       </h2>
       <div>{children}</div>
-      <Button
-        className='font-bold'
-        onClick={() => setCount((count) => count + 1)}
-      >
+      <Button className='font-bold' onClick={plusCount}>
         count + 1
       </Button>
     </div>
