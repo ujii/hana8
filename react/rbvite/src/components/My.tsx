@@ -116,8 +116,6 @@ export default function My({
                   onClick={() => {
                     {
                       setId(id);
-                      setName(name);
-                      setPrice(price);
                     }
                   }}
                   className='border-transparent flex items-center justify-center px-0 py-0 w-5 h-5'
