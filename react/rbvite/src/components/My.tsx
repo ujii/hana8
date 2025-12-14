@@ -13,6 +13,7 @@ type Prop = {
   login: LoginFunction;
   removeItem: (id: number) => void;
   addItem: (name: string, price: number) => void;
+  modifyItem: (id: number, name: string, price: number) => void;
 };
 
 export default function My({
@@ -21,10 +22,14 @@ export default function My({
   login,
   removeItem,
   addItem,
+  modifyItem,
 }: Prop) {
   // const idRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
+  const [newId, setId] = useState(0);
+  const [newName, setName] = useState('');
+  const [newPrice, setPrice] = useState(0);
 
   const editItem = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,6 +65,14 @@ export default function My({
     }
   };
 
+  const modifyInfo = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    modifyItem(newId, newName, newPrice);
+    console.log(newId, newName, newPrice);
+    setId(0);
+  };
+
   return (
     <>
       {session?.loginUser ? (
@@ -71,15 +84,49 @@ export default function My({
       <ul>
         {session.cart.map(({ id, name, price }) => (
           <li key={id} className='flex items-center gap-1'>
-            <Small>{id}.</Small> {name}
-            <Small>{price.toLocaleString()}원</Small>
-            <Button
-              onClick={() => removeItem(id)}
-              className='ml-2 px-1 py-0 text-sm bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-2xl 
+            {newId === id ? (
+              <form onSubmit={modifyInfo} className='flex gap-1'>
+                <LabelInput
+                  placeholder={`${name}`}
+                  onChange={(e) => setName(e.target.value)}
+                ></LabelInput>
+                <LabelInput
+                  type='number'
+                  placeholder={`${price}`}
+                  onChange={(e) => setPrice(+e.target.value)}
+                ></LabelInput>
+                <Button
+                  type='submit'
+                  className='text-blue-600 flex items-center justify-center'
+                >
+                  <CheckIcon></CheckIcon>
+                </Button>
+              </form>
+            ) : (
+              <>
+                <Small>{id}.</Small> {name}
+                <Small>{price.toLocaleString()}원</Small>
+                <Button
+                  onClick={() => removeItem(id)}
+                  className='ml-2 px-1 py-0 text-sm bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-2xl 
             active:scale-150 transition duration-300'
-            >
-              x
-            </Button>
+                >
+                  x
+                </Button>
+                <Button
+                  onClick={() => {
+                    {
+                      setId(id);
+                      setName(name);
+                      setPrice(price);
+                    }
+                  }}
+                  className='border-transparent flex items-center justify-center px-0 py-0 w-5 h-5'
+                >
+                  <PencilIcon></PencilIcon>
+                </Button>
+              </>
+            )}
           </li>
         ))}
       </ul>

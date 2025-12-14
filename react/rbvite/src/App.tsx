@@ -70,6 +70,15 @@ function App() {
     setSession({ ...session, cart: [...session.cart, newItem] });
   };
 
+  const modifyItem = (id: number, name: string, price: number) => {
+    setSession({
+      ...session,
+      cart: session.cart.map((item) =>
+        item.id === id ? { id, name, price } : item
+      ),
+    });
+  };
+
   // if ( x === undefined ) x가 정의되지 않았을 때에만 초기화
   //    x = 0;
   // function setAction(y) {
@@ -87,6 +96,7 @@ function App() {
         login={login}
         removeItem={removeItem}
         addItem={addItem}
+        modifyItem={modifyItem}
       />
 
       <div className='card'>
