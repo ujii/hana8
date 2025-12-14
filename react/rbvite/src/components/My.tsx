@@ -69,7 +69,6 @@ export default function My({
     e.preventDefault();
 
     modifyItem(newId, newName, newPrice);
-    console.log(newId, newName, newPrice);
     setId(0);
   };
 
