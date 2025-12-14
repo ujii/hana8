@@ -20,8 +20,8 @@ export type Session = {
 export type LoginFunction = (name: string, age: number) => void;
 
 const DefaultSession: Session = {
-  loginUser: null, // 로그아웃 테스트
-  // loginUser: { id: 1, name: 'Hong', age: 33 }, // 로그인 테스트
+  // loginUser: null, // 로그아웃 테스트
+  loginUser: { id: 1, name: 'Hong', age: 33 }, // 로그인 테스트
   cart: [
     { id: 100, name: '라면', price: 3000 },
     { id: 101, name: '컵라면', price: 2000 },
@@ -61,6 +61,15 @@ function App() {
     });
   };
 
+  const addItem = (name: string, price: number) => {
+    const newItem = {
+      id: Math.max(...session.cart.map((item) => item.id), 0) + 1,
+      name,
+      price,
+    };
+    setSession({ ...session, cart: [...session.cart, newItem] });
+  };
+
   // if ( x === undefined ) x가 정의되지 않았을 때에만 초기화
   //    x = 0;
   // function setAction(y) {
@@ -77,6 +86,7 @@ function App() {
         logout={logout}
         login={login}
         removeItem={removeItem}
+        addItem={addItem}
       />
 
       <div className='card'>
