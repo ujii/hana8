@@ -4,6 +4,7 @@ type Props = {
   type?: string;
   label?: string;
   ref?: RefObject<HTMLInputElement | null>;
+  defaultValue?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
@@ -12,8 +13,10 @@ type Props = {
 export default function LabelInput({
   type,
   label,
+  defaultValue,
   ref,
   onChange,
+
   placeholder,
   className,
 }: Props) {
@@ -29,6 +32,7 @@ export default function LabelInput({
         type={type || 'text'}
         id={inputId}
         ref={ref}
+        defaultValue={defaultValue}
         onChange={onChange}
         placeholder={placeholder}
         className={`w-full ${className}`}

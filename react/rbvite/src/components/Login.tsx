@@ -30,8 +30,8 @@ export default function Login({ login }: Props) {
     <div className='border border-red-300 p-3 rounded-lg'>
       <h1 className='text-2xl text-center font-medium'>Login</h1>
       <form onSubmit={makeLogin} className='space-y-3'>
-        <LabelInput label='Name' ref={nameRef} placeholder='user name...' />
-        <LabelInput label='Age' ref={ageRef} placeholder='user age...' />
+        <LabelInput label='Name' ref={nameRef} />
+        <LabelInput type='number' ref={ageRef} placeholder='Age...' />
 
         {/* <LabelInput
           type='number'
@@ -87,7 +87,7 @@ export default function Login({ login }: Props) {
           <Button
             // type='submit'
             // onClick={() => login(name, age)}
-            className='bg-blue-500 text-white hover:bg-blue-600 w-full'
+            className='bg-blue-500 text-white hover:bg-blue-600'
           >
             Login
           </Button>
