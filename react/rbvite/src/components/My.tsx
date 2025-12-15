@@ -9,16 +9,19 @@ import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
 import Button from './ui/Button';
 import { PlusIcon } from 'lucide-react';
-import { useEffect, useRef, useState, type RefObject } from 'react';
+import { useEffect, useRef, useState, type RefObject, useReducer } from 'react';
 
 export default function My() {
   const { session } = useSession();
-  const [isAdding, setAdding] = useState(false);
+  // const [isAdding, setAdding] = useState(false);
+  // const toggleAdding = () => () => setAdding((pre) => !pre);
+  const [isAdding, toggleAdding] = useReducer((pre) => !pre, false);
+
   const profileHandlerRef = useRef<ProfileHandler>(null);
 
   const item101 = session.cart.find((item) => item.id === 101);
   useEffect(() => {
-    console.log('🚀 ~ item101:', item101);
+    // console.log('🚀 ~ item101:', item101);
   }, [item101]);
 
   return (
@@ -45,10 +48,10 @@ export default function My() {
           {isAdding ? (
             <Item
               item={{ id: 0, name: 'New Item', price: 3000 }}
-              toggleAdding={() => setAdding(false)}
+              toggleAdding={toggleAdding}
             />
           ) : (
-            <Button onClick={() => setAdding(true)} className=''>
+            <Button onClick={toggleAdding} className=''>
               <PlusIcon />
             </Button>
           )}
