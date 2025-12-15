@@ -1,20 +1,20 @@
 import type { PropsWithChildren } from 'react';
 import Button from './ui/Button';
 import { useCounter } from '../hooks/CounterContext';
+import { useSession } from '../hooks/SessionContext';
 
 // type Prop = {
 //   name: string;
 //   children: ReactNode;
 // };
-type Prop = PropsWithChildren<{
-  name?: string;
-  age?: number;
-  // setCount: (cb: (c: number) => number) => void;
-  // plusCount: () => void;
-}>;
 
 // T & {children: ReactNode;}
-export default function Hello({ name = 'guest', age, children }: Prop) {
+export default function Hello({ children }: PropsWithChildren) {
+  const {
+    session: { loginUser },
+  } = useSession();
+  const { name = 'Guest', age } = loginUser || {};
+
   const { plusCount } = useCounter();
 
   return (

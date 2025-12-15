@@ -6,7 +6,7 @@ import {
   type RefObject,
 } from 'react';
 import Button from './ui/Button';
-import type { LoginFunction } from '../App';
+import { useSession, type LoginFunction } from '../hooks/SessionContext';
 import LabelInput from './ui/LabelInput';
 
 export type LoginHandler = {
@@ -14,12 +14,9 @@ export type LoginHandler = {
   focusName: () => void;
 };
 
-type Props = {
-  login: LoginFunction;
-  ref: RefObject<LoginHandler | null>;
-};
+export default function Login() {
+  const { login, loginHandlerRef: ref } = useSession();
 
-export default function Login({ login, ref }: Props) {
   // const [name, setName] = useState('');
   // const [age, setAge] = useState(0);
 

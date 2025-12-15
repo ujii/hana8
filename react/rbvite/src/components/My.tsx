@@ -1,4 +1,9 @@
-import type { ItemType, LoginFunction, Session } from '../App';
+import {
+  useSession,
+  type ItemType,
+  type LoginFunction,
+  type Session,
+} from '../hooks/SessionContext';
 import Login, { type LoginHandler } from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
@@ -6,25 +11,8 @@ import Button from './ui/Button';
 import { PlusIcon } from 'lucide-react';
 import { useEffect, useRef, useState, type RefObject } from 'react';
 
-type Prop = {
-  session: Session;
-  logout: () => void;
-  login: LoginFunction;
-  loginHandlerRef: RefObject<LoginHandler | null>;
-  removeItem: (id: number) => void;
-  saveItem: ({ id, name, price }: ItemType) => void;
-  // modifyItem: (id: number, name: string, price: number) => void;
-};
-
-export default function My({
-  session,
-  logout,
-  login,
-  loginHandlerRef,
-  removeItem,
-  saveItem,
-  //modifyItem,
-}: Prop) {
+export default function My() {
+  const { session } = useSession();
   const [isAdding, setAdding] = useState(false);
   const profileHandlerRef = useRef<ProfileHandler>(null);
 
@@ -35,15 +23,7 @@ export default function My({
 
   return (
     <>
-      {session?.loginUser ? (
-        <Profile
-          loginUser={session.loginUser}
-          logout={logout}
-          ref={profileHandlerRef}
-        />
-      ) : (
-        <Login login={login} ref={loginHandlerRef} />
-      )}
+      {session?.loginUser ? <Profile ref={profileHandlerRef} /> : <Login />}
       <hr />
       <a
         href='#!'
@@ -58,15 +38,13 @@ export default function My({
       <ul>
         {session.cart.map((item) => (
           <li key={item.id}>
-            <Item item={item} removeItem={removeItem} saveItem={saveItem} />
+            <Item item={item} />
           </li>
         ))}
         <li className='text-center'>
           {isAdding ? (
             <Item
               item={{ id: 0, name: 'New Item', price: 3000 }}
-              removeItem={removeItem}
-              saveItem={saveItem}
               toggleAdding={() => setAdding(false)}
             />
           ) : (

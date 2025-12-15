@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent, type RefObject } from 'react';
-import type { ItemType } from '../App';
+import { useSession, type ItemType } from '../hooks/SessionContext';
 import Small from './ui/Small';
 import Button from './ui/Button';
 import { FilePlus2Icon, RotateCcwIcon, SaveIcon } from 'lucide-react';
@@ -7,19 +7,11 @@ import LabelInput from './ui/LabelInput';
 
 type Props = {
   item: ItemType;
-  removeItem?: (id: number) => void;
-  //   saveItem: (id: number, name: string, price: number) => void;
-  //   saveItem: (item: Item) => void;
-  saveItem: ({ id, name, price }: ItemType) => void;
   toggleAdding?: () => void;
 };
 
-export default function Item({
-  item,
-  removeItem,
-  saveItem,
-  toggleAdding,
-}: Props) {
+export default function Item({ item, toggleAdding }: Props) {
+  const { removeItem, saveItem } = useSession();
   const [isEditing, setEditing] = useState(!item.id);
   const [hasDirty, setDirty] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
