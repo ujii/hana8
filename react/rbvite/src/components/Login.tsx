@@ -1,13 +1,25 @@
-import { useRef, type FormEvent, useEffect } from 'react';
+import {
+  useRef,
+  type FormEvent,
+  useEffect,
+  useImperativeHandle,
+  type RefObject,
+} from 'react';
 import Button from './ui/Button';
 import type { LoginFunction } from '../App';
 import LabelInput from './ui/LabelInput';
 
-type Props = {
-  login: LoginFunction;
+export type LoginHandler = {
+  validate: () => void;
+  focusName: () => void;
 };
 
-export default function Login({ login }: Props) {
+type Props = {
+  login: LoginFunction;
+  ref: RefObject<LoginHandler | null>;
+};
+
+export default function Login({ login, ref }: Props) {
   // const [name, setName] = useState('');
   // const [age, setAge] = useState(0);
 
@@ -15,11 +27,33 @@ export default function Login({ login }: Props) {
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
 
+  useImperativeHandle(ref, () => ({
+    validate() {
+      if (!nameRef.current?.value) {
+        alert('Input the name!');
+        nameRef.current?.focus();
+        return false;
+      }
+
+      if (!ageRef.current?.value) {
+        alert('Input the age!');
+        ageRef.current?.focus();
+        return false;
+      }
+
+      return true;
+    },
+
+    focusName() {
+      nameRef.current?.focus();
+    },
+  }));
+
   const makeLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (nameRef.current?.value && ageRef.current?.value)
-      login(nameRef.current.value, Number(ageRef.current.value));
+    // if (nameRef.current?.value && ageRef.current?.value
+    login(nameRef.current?.value ?? '', Number(ageRef.current?.value));
   };
 
   useEffect(() => {
@@ -31,7 +65,12 @@ export default function Login({ login }: Props) {
       <h1 className='text-2xl text-center font-medium'>Login</h1>
       <form onSubmit={makeLogin} className='space-y-3'>
         <LabelInput label='Name' ref={nameRef} />
-        <LabelInput type='number' ref={ageRef} placeholder='Age...' />
+        <LabelInput
+          type='number'
+          ref={ageRef}
+          // onChange={(e) => setAge(+e.target.value)}
+          placeholder='Age...'
+        />
 
         {/* <LabelInput
           type='number'

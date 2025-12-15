@@ -8,6 +8,7 @@ type Props = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
+  required?: boolean;
 };
 
 export default function LabelInput({
@@ -19,6 +20,7 @@ export default function LabelInput({
 
   placeholder,
   className,
+  required,
 }: Props) {
   const inputId = useId();
   return (
@@ -36,7 +38,7 @@ export default function LabelInput({
         onChange={onChange}
         placeholder={placeholder}
         className={`w-full ${className}`}
-        required
+        required={required}
       ></input>
     </div>
   );

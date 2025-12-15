@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import Hello from './components/Hello';
 import My from './components/My';
+import { useCounter } from './hooks/CounterContext';
+import type { LoginHandler } from './components/Login';
 
 export type ItemType = {
   id: number;
@@ -30,10 +32,11 @@ const DefaultSession: Session = {
 };
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  const { count } = useCounter();
   const [session, setSession] = useState<Session>(DefaultSession);
 
-  const plusCount = () => setCount((prevCount) => prevCount + 1);
+  const loginHandlerRef = useRef<LoginHandler | null>(null);
 
   const logout = () => {
     // session.loginUser = null;
@@ -41,8 +44,9 @@ function App() {
   };
 
   const login: LoginFunction = (name, age) => {
-    if (!name || !age) return alert('Input Name and Age');
-    setSession({ ...session, loginUser: { id: 1, name, age } });
+    // if (!name || !age) return alert('Input Name and Age');
+    if (loginHandlerRef.current?.validate())
+      setSession({ ...session, loginUser: { id: 1, name, age } });
   };
 
   const removeItem = (id: number) => {
@@ -57,7 +61,7 @@ function App() {
     // 좋은 코드
     setSession({
       ...session,
-      cart: session.cart.filter((ItemTypes) => ItemTypes.id !== id),
+      cart: session.cart.filter((item) => item.id !== id),
     });
   };
 
@@ -115,16 +119,13 @@ function App() {
         session={session}
         logout={logout}
         login={login}
+        loginHandlerRef={loginHandlerRef}
         removeItem={removeItem}
         saveItem={saveItem}
         // modifyItem={modifyItem}
       />
 
-      <Hello
-        name={session.loginUser?.name}
-        age={session.loginUser?.age}
-        plusCount={plusCount}
-      >
+      <Hello name={session.loginUser?.name} age={session.loginUser?.age}>
         반갑습니다
       </Hello>
     </div>

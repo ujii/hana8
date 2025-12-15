@@ -1,15 +1,16 @@
 import type { ItemType, LoginFunction, Session } from '../App';
-import Login from './Login';
+import Login, { type LoginHandler } from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
 import Button from './ui/Button';
 import { PlusIcon } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 
 type Prop = {
   session: Session;
   logout: () => void;
   login: LoginFunction;
+  loginHandlerRef: RefObject<LoginHandler | null>;
   removeItem: (id: number) => void;
   saveItem: ({ id, name, price }: ItemType) => void;
   // modifyItem: (id: number, name: string, price: number) => void;
@@ -19,12 +20,11 @@ export default function My({
   session,
   logout,
   login,
+  loginHandlerRef,
   removeItem,
   saveItem,
   //modifyItem,
 }: Prop) {
-  // const idRef = useRef<HTMLInputElement>(null);
-
   const [isAdding, setAdding] = useState(false);
   const profileHandlerRef = useRef<ProfileHandler>(null);
 
@@ -42,10 +42,19 @@ export default function My({
           ref={profileHandlerRef}
         />
       ) : (
-        <Login login={login} />
+        <Login login={login} ref={loginHandlerRef} />
       )}
       <hr />
-      {item101?.name}
+      <a
+        href='#!'
+        onClick={(e) => {
+          e.preventDefault();
+          profileHandlerRef.current?.showLoginUser();
+          console.log('xxx>>', profileHandlerRef.current?.xxx);
+        }}
+      >
+        {item101?.name}
+      </a>
       <ul>
         {session.cart.map((item) => (
           <li key={item.id}>
