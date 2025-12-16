@@ -9,7 +9,14 @@ import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
 import Button from './ui/Button';
 import { PlusIcon } from 'lucide-react';
-import { useEffect, useRef, useState, type RefObject, useReducer } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+  useReducer,
+  useLayoutEffect,
+} from 'react';
 import { useInterval } from '../hooks/interval';
 
 export default function My() {
@@ -46,16 +53,31 @@ export default function My() {
 
   // goodSec + 1 의 값이
   console.log('🚀 ~ goodSec:', goodSec);
-  useInterval(ff, 1000, goodSec + 1);
+  const { reset, clear } = useInterval(ff, 1000, goodSec + 1);
   // useInterval(setGoodSec, 1000, goodSec + 1);
   // useInterval(() => setGoodSec((p) => p + 1), 1000);
   // useInterval(f, 1000);
+
+  const [data, setData] = useState<ItemType[]>([]);
+  useLayoutEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetch('/data/sample.json', { signal })
+      .then((res) => res.json())
+      .then(setData);
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <>
       <h1 className='text-xl'>
         bad: {badSec}, good: {goodSec}
       </h1>
+      <div className='flex'>
+        <button onClick={reset}>reset</button>
+        <button onClick={clear}>clear</button>
+      </div>
       {session?.loginUser ? <Profile ref={profileHandlerRef} /> : <Login />}
       <hr />
       <a
@@ -69,7 +91,7 @@ export default function My() {
         {item101?.name}
       </a>
       <ul>
-        {session.cart.map((item) => (
+        {data.map((item) => (
           <li key={item.id}>
             <Item item={item} />
           </li>
