@@ -10,6 +10,7 @@ import Item from './Item';
 import Button from './ui/Button';
 import { PlusIcon } from 'lucide-react';
 import { useEffect, useRef, useState, type RefObject, useReducer } from 'react';
+import { useInterval } from '../hooks/interval';
 
 export default function My() {
   const { session } = useSession();
@@ -20,12 +21,41 @@ export default function My() {
   const profileHandlerRef = useRef<ProfileHandler>(null);
 
   const item101 = session.cart.find((item) => item.id === 101);
+  // useEffect(() => {
+  // console.log('🚀 ~ it/em101:', item101);
+  // }, [item101]);
+
+  const [badSec, setBadSec] = useState(0);
+  const [goodSec, setGoodSec] = useState(0);
+
   useEffect(() => {
-    // console.log('🚀 ~ item101:', item101);
-  }, [item101]);
+    setInterval(() => setBadSec((p) => p + 1), 1000);
+  }, []);
+
+  // useEffect(() => {
+  //   const intl = setInterval(() => setGoodSec((p) => p + 1), 1000);
+  //   return () => clearInterval(intl);
+  // }, []);
+
+  // const f = () => setGoodSec((p) => p + 1);
+  const ff = (n: number) => {
+    console.log('🚀 ~ n:', n, goodSec); // n은 영원히 1 (: )
+    // setGoodSec(n + 1); // 위 goodSec는 영원히 0
+    setGoodSec((p) => p + 1);
+  };
+
+  // goodSec + 1 의 값이
+  console.log('🚀 ~ goodSec:', goodSec);
+  useInterval(ff, 1000, goodSec + 1);
+  // useInterval(setGoodSec, 1000, goodSec + 1);
+  // useInterval(() => setGoodSec((p) => p + 1), 1000);
+  // useInterval(f, 1000);
 
   return (
     <>
+      <h1 className='text-xl'>
+        bad: {badSec}, good: {goodSec}
+      </h1>
       {session?.loginUser ? <Profile ref={profileHandlerRef} /> : <Login />}
       <hr />
       <a

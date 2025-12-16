@@ -33,6 +33,8 @@ export default defineConfig([
       ...reactHooks.configs.recommended.rules,
       'react/jsx-key': 'error',
       'react/no-array-index-key': 'warn',
+      'react-hooks/exhaustive-deps': 'off',
+      'react-hooks/exhaustive-deps': 'off',
     },
 
   },

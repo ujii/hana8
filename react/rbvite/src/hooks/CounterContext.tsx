@@ -4,6 +4,7 @@ import {
   type PropsWithChildren,
   useState,
   useReducer,
+  useCallback,
 } from 'react';
 
 type ContextValue = {
@@ -31,7 +32,7 @@ const reducer = (preCount: number, { type, payload }: Action) => {
     case 'plus':
       return preCount + payload;
     case 'minus':
-      return preCount - payload;
+      return preCount + payload;
     case 'multi':
       return preCount * payload;
     default:
@@ -41,17 +42,22 @@ const reducer = (preCount: number, { type, payload }: Action) => {
 
 // 2. Provider
 export function CounterProvider({ children }: PropsWithChildren) {
-  const [count, dispatch] = useReducer(
-    (preCount, action) => preCount + action,
-    0
-  );
+  const [count, dispatch] = useReducer(reducer, 0);
   //   const [count, setCount] = useState(0);
   //   const plusCount = () => setCount((prevCount) => prevCount + 1);
   //   const minusCount = () => setCount((prevCount) => prevCount - 1);
-  const plusCount = () => dispatch({ type: 'plus', payload: 1 });
-  const minusCount = () => dispatch({ type: 'minus', payload: -1 });
-  const multiCount = (n: number) => dispatch({ type: 'multi', payload: n });
-
+  const plusCount = useCallback(
+    () => dispatch({ type: 'plus', payload: 1 }),
+    []
+  );
+  const minusCount = useCallback(
+    () => dispatch({ type: 'minus', payload: -1 }),
+    []
+  );
+  const multiCount = useCallback(
+    (payload: number) => dispatch({ type: 'multi', payload }),
+    []
+  );
   return (
     <CounterContext.Provider
       value={{ count, plusCount, minusCount, multiCount }}

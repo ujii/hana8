@@ -11,11 +11,11 @@ function App() {
   const { count } = useCounter();
 
   return (
-    <div className='grid place-items-center h-screen mx-1'>
+    <div className='grid place-items-center h-screen mx-2'>
       <h1 className='text-3xl'>count: {count}</h1>
       <SessionProvider>
         <My />
-        <Hello>반갑습니다</Hello>
+        {count < 5 && <Hello>반갑습니다</Hello>}
       </SessionProvider>
     </div>
   );

@@ -54,7 +54,10 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (nameRef.current) nameRef.current.focus();
+    alert('Login Plz...');
+    nameRef.current?.focus();
+
+    return () => alert('Login success!!');
   }, []);
 
   return (
