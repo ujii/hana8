@@ -1,10 +1,5 @@
-import {
-  useSession,
-  type ItemType,
-  type LoginFunction,
-  type Session,
-} from '../hooks/SessionContext';
-import Login, { type LoginHandler } from './Login';
+import { useSession, type ItemType } from '../hooks/SessionContext';
+import Login from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
 import Button from './ui/Button';
@@ -13,11 +8,11 @@ import {
   useEffect,
   useRef,
   useState,
-  type RefObject,
   useReducer,
-  useLayoutEffect,
+  useMemo,
 } from 'react';
 import { useInterval } from '../hooks/interval';
+import { useFetch } from '../hooks/useFetch';
 
 export default function My() {
   const { session } = useSession();
@@ -58,16 +53,23 @@ export default function My() {
   // useInterval(() => setGoodSec((p) => p + 1), 1000);
   // useInterval(f, 1000);
 
-  const [data, setData] = useState<ItemType[]>([]);
-  useLayoutEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
-    fetch('/data/sample.json', { signal })
-      .then((res) => res.json())
-      .then(setData);
+  // const [data, setData] = useState<ItemType[]>([]);
+  // useLayoutEffect(() => {
+  //   const controller = new AbortController();
+  //   const { signal } = controller;
+  //   fetch('/data/sample.json', { signal })
+  //     .then((res) => res.json())
+  //     .then(setData);
 
-    return () => controller.abort();
-  }, []);
+  //   return () => controller.abort();
+  // }, []);
+
+  const { data } = useFetch<ItemType[]>('/data/sample.json');
+
+  const totalPrice = useMemo(
+    () => session.cart.reduce((acc, item) => acc + item.price, 0),
+    [session.cart]
+  );
 
   return (
     <>
@@ -91,7 +93,7 @@ export default function My() {
         {item101?.name}
       </a>
       <ul>
-        {data.map((item) => (
+        {(session.cart.length ? session.cart : data)?.map((item) => (
           <li key={item.id}>
             <Item item={item} />
           </li>
