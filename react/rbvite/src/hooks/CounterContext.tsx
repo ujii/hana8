@@ -25,6 +25,7 @@ type Action = {
   type: 'plus' | 'minus' | 'multi';
   payload: number;
 };
+
 const reducer = (preCount: number, { type, payload }: Action) => {
   switch (type) {
     case 'plus':
