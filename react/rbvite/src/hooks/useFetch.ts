@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from 'react';
 import { isErrorWithMessage } from '../libs/utils';
 
 // {data, isLoading} = seFetch(url, [id])
-export function useFetch<T>(url: string, deps = []) {
+export function useFetch<T>(url: string, deps: unknown[] = []) {
   const [data, setData] = useState<T>();
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

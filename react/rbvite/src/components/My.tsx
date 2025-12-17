@@ -4,15 +4,10 @@ import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
 import Button from './ui/Button';
 import { PlusIcon } from 'lucide-react';
-import {
-  useEffect,
-  useRef,
-  useState,
-  useReducer,
-  useMemo,
-} from 'react';
-import { useInterval } from '../hooks/interval';
+import { useEffect, useRef, useState, useReducer, useMemo } from 'react';
+import { useInterval, useThrottle } from '../hooks/useTimer';
 import { useFetch } from '../hooks/useFetch';
+import LabelInput from './ui/LabelInput';
 
 export default function My() {
   const { session } = useSession();
@@ -71,6 +66,10 @@ export default function My() {
     [session.cart]
   );
 
+  const [searchStr, setSearchStr] = useState('');
+  // const debouncedSearchStr = useDebounce(searchStr, 500);
+  const debouncedSearchStr = useThrottle(searchStr, 500);
+
   return (
     <>
       <h1 className='text-xl'>
@@ -92,12 +91,20 @@ export default function My() {
       >
         {item101?.name}
       </a>
+      <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
+      <LabelInput
+        label='search'
+        onChange={(e) => setSearchStr(e.target.value)}
+        autoComplete='off'
+      />
       <ul>
-        {(session.cart.length ? session.cart : data)?.map((item) => (
-          <li key={item.id}>
-            <Item item={item} />
-          </li>
-        ))}
+        {(session.cart.length ? session.cart : data)
+          ?.filter((item) => item.name.includes(debouncedSearchStr))
+          .map((item) => (
+            <li key={item.id}>
+              <Item item={item} />
+            </li>
+          ))}
         <li className='text-center'>
           {isAdding ? (
             <Item

@@ -1,4 +1,9 @@
-import { useId, type ChangeEvent, type RefObject } from 'react';
+import {
+  useId,
+  type ChangeEvent,
+  type RefObject,
+  type HTMLInputAutoCompleteAttribute,
+} from 'react';
 
 type Props = {
   type?: string;
@@ -9,18 +14,19 @@ type Props = {
   placeholder?: string;
   className?: string;
   required?: boolean;
+  autoComplete?: '' | 'off' | 'email' | 'tel';
 };
 
 export default function LabelInput({
   type,
   label,
-  defaultValue,
   ref,
   onChange,
-
+  defaultValue,
   placeholder,
   className,
   required,
+  autoComplete,
 }: Props) {
   const inputId = useId();
   return (
@@ -39,6 +45,7 @@ export default function LabelInput({
         placeholder={placeholder}
         className={`w-full ${className}`}
         required={required}
+        autoComplete={autoComplete}
       ></input>
     </div>
   );
