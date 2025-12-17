@@ -126,7 +126,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     cart: getStorage(),
   }); // reducer가 리턴하는 타입이 곧 session 타입. 따라서 타입 일치해야함
 
-  const { data, sampleData } = useFetch<ItemType[]>('/data/sample.json');
+  const { data: sampleData } = useFetch<ItemType[]>('/data/sample.json');
   useEffect(() => {
     if (sampleData && !session.cart.length) {
       dispatch({ type: 'INITIALIZE', payload: sampleData });
