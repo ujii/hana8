@@ -78,6 +78,7 @@ export default function Login() {
           LoginAction
         </Button>
       </form>
+      <form onSubmit={makeLogin} className='space-y-3'>
         <LabelInput label='Name' ref={nameRef} />
         <LabelInput
           type='number'

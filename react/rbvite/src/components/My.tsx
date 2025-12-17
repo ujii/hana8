@@ -18,6 +18,8 @@ import {
 import { useInterval, useThrottle } from '../hooks/useTimer';
 import { useFetch } from '../hooks/useFetch';
 import LabelInput from './ui/LabelInput';
+import Spinner from './ui/Spinner';
+import { useFormStatus } from 'react-dom';
 
 export default function My() {
   const { session } = useSession();
@@ -91,8 +93,8 @@ export default function My() {
     });
   };
 
-  const [results, search, isPending] = useActionState<ItemType[], FormData>(
-    async (preResults, formData) => {
+  const [results, search, isPending] = useActionState(
+    async (preResults: ItemType[], formData: FormData) => {
       const str = formData.get('ActionState') as string;
       console.log('******', preResults, str);
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -123,24 +125,23 @@ export default function My() {
         {item101?.name}
       </a>
       <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
-      <div>
-        {isPending ? (
-          <Loader2Icon className='animate-spin' />
-        ) : (
-          'SR_ActionState'
-        )}
-        :{results.map((item) => item.name).join()}
-      </div>
+      {isPending ? (
+        <Spinner />
+      ) : (
+        <div>SR_ActionState :{results.map((item) => item.name).join()}</div>
+      )}
       <div>SR_Transition: {searchResult.map((item) => item.name).join()}</div>
       {isSearching ? (
-        <Loader2Icon className='animate-spin' />
+        <Spinner />
       ) : (
         <h2 className='text-x text-red-500'>
           {searchStr} : {deferredStr} :{debouncedSearchStr}
         </h2>
       )}
-      <form action={search}>
+      <form className='flex gap-2'>
         <LabelInput label='ActionState' autoComplete='off' />
+        <button formAction={search}>Action</button>
+        <SearchButton />
       </form>
       <LabelInput
         label='Transition'
@@ -170,6 +171,12 @@ export default function My() {
       </ul>
     </>
   );
+}
+
+function SearchButton() {
+  const { pending, data } = useFormStatus();
+  if (data) console.log('ddddddd>>', data, pending);
+  return <button disabled={pending}>SearchButton</button>;
 }
 
 // const [newId, setId] = useState(0);
