@@ -6,8 +6,10 @@ import {
   createContext,
   useRef,
   useReducer,
+  useEffect,
 } from 'react';
 import type { LoginHandler } from '../components/Login';
+import { useFetch } from './useFetch';
 
 export type ItemType = {
   id: number;
@@ -34,6 +36,23 @@ export const DefaultSession: Session = {
   ],
 };
 
+const SKEY = 'CART_0.1';
+const SKEY_EXP = 'CART_EXP';
+// const SKEY_EXP_TIME = 86400 * 1000; 하루동안 유지
+const SKEY_EXP_TIME = 30 * 1000;
+const setStorage = (cart: ItemType[]) => {
+  localStorage.setItem('SKEY', JSON.stringify(cart));
+  localStorage.setItem('SKEY_EXP', String(Date.now() + SKEY_EXP_TIME));
+};
+const getStorage = () => {
+  const expireAt = Number(localStorage.getItem(SKEY_EXP));
+  if (isNaN(expireAt) || expireAt < Date.now()) {
+    localStorage.clear();
+    return [];
+  }
+  return JSON.parse(localStorage.getItem(SKEY) || '[]') as ItemType[];
+};
+
 type SessionContextValue = {
   session: Session;
   login: LoginFunction;
@@ -44,7 +63,7 @@ type SessionContextValue = {
 };
 
 const SessionContext = createContext<SessionContextValue>({
-  session: DefaultSession,
+  session: { loginUser: null, cart: [] },
   login: () => {},
   logout: () => {},
   loginHandlerRef: null,
@@ -53,6 +72,7 @@ const SessionContext = createContext<SessionContextValue>({
 });
 
 type Action =
+  | { type: 'INITIALIZE'; payload: ItemType[] }
   | { type: 'LOGIN'; payload: LoginUser }
   | { type: 'LOGOUT'; payload: null }
   | { type: 'ADD-ITEM'; payload: ItemType }
@@ -60,32 +80,58 @@ type Action =
   | { type: 'REMOVE-ITEM'; payload: number };
 
 const reducer = (session: Session, { type, payload }: Action) => {
+  let cart = [];
+
   switch (type) {
     case 'LOGIN':
     case 'LOGOUT':
       return { ...session, loginUser: payload };
     case 'ADD-ITEM':
-      return { ...session, cart: [...session.cart, payload] };
+      // return { ...session, cart: [...session.cart, payload] };
+      cart = [...session.cart, payload];
+      break;
     case 'EDIT-ITEM':
-      return {
-        ...session,
-        cart: session.cart.map((item) =>
-          item.id === payload.id ? payload : item
-        ),
-      };
+      // return {
+      //   ...session,
+      //   cart: session.cart.map((item) =>
+      //     item.id === payload.id ? payload : item
+      //   ),
+      // };
+      cart = session.cart.map((item) =>
+        item.id === payload.id ? payload : item
+      );
+      break;
     case 'REMOVE-ITEM':
-      return {
-        ...session,
-        cart: session.cart.filter((item) => item.id !== payload),
-      };
+      // return {
+      //   ...session,
+      //   cart: session.cart.filter((item) => item.id !== payload),
+      // };
+      cart = session.cart.filter((item) => item.id !== payload);
+      break;
+    case 'INITIALIZE':
+      cart = payload;
+      break;
     default:
       return session;
   }
+
+  setStorage(cart);
+  return { ...session, cart };
 };
 
 export function SessionProvider({ children }: PropsWithChildren) {
   //   const [session, setSession] = useState<Session>(DefaultSession);
-  const [session, dispatch] = useReducer(reducer, DefaultSession); // reducer가 리턴하는 타입이 곧 session 타입. 따라서 타입 일치해야함
+  const [session, dispatch] = useReducer(reducer, {
+    loginUser: { id: 1, name: 'Hong', age: 33 },
+    cart: getStorage(),
+  }); // reducer가 리턴하는 타입이 곧 session 타입. 따라서 타입 일치해야함
+
+  const { data, sampleData } = useFetch<ItemType[]>('/data/sample.json');
+  useEffect(() => {
+    if (sampleData && !session.cart.length) {
+      dispatch({ type: 'INITIALIZE', payload: sampleData });
+    }
+  }, [sampleData]);
 
   const loginHandlerRef = useRef<LoginHandler | null>(null);
 

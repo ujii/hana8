@@ -3,8 +3,17 @@ import Login from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
 import Button from './ui/Button';
-import { PlusIcon } from 'lucide-react';
-import { useEffect, useRef, useState, useReducer, useMemo } from 'react';
+import { Loader2Icon, PlusIcon } from 'lucide-react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  useReducer,
+  useMemo,
+  useDeferredValue,
+  type ChangeEvent,
+  useTransition,
+} from 'react';
 import { useInterval, useThrottle } from '../hooks/useTimer';
 import { useFetch } from '../hooks/useFetch';
 import LabelInput from './ui/LabelInput';
@@ -36,13 +45,13 @@ export default function My() {
 
   // const f = () => setGoodSec((p) => p + 1);
   const ff = (n: number) => {
-    console.log('🚀 ~ n:', n, goodSec); // n은 영원히 1 (: )
+    // console.log('🚀 ~ n:', n, goodSec); // n은 영원히 1 (: )
     // setGoodSec(n + 1); // 위 goodSec는 영원히 0
     setGoodSec((p) => p + 1);
   };
 
   // goodSec + 1 의 값이
-  console.log('🚀 ~ goodSec:', goodSec);
+  // console.log('🚀 ~ goodSec:', goodSec);
   const { reset, clear } = useInterval(ff, 1000, goodSec + 1);
   // useInterval(setGoodSec, 1000, goodSec + 1);
   // useInterval(() => setGoodSec((p) => p + 1), 1000);
@@ -59,8 +68,6 @@ export default function My() {
   //   return () => controller.abort();
   // }, []);
 
-  const { data } = useFetch<ItemType[]>('/data/sample.json');
-
   const totalPrice = useMemo(
     () => session.cart.reduce((acc, item) => acc + item.price, 0),
     [session.cart]
@@ -69,6 +76,16 @@ export default function My() {
   const [searchStr, setSearchStr] = useState('');
   // const debouncedSearchStr = useDebounce(searchStr, 500);
   const debouncedSearchStr = useThrottle(searchStr, 500);
+
+  const deferredStr = useDeferredValue(searchStr);
+
+  const [isSearching, startSearchingTransition] = useTransition();
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    startSearchingTransition(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSearchStr(e.target.value);
+    });
+  };
 
   return (
     <>
@@ -92,13 +109,16 @@ export default function My() {
         {item101?.name}
       </a>
       <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
-      <LabelInput
-        label='search'
-        onChange={(e) => setSearchStr(e.target.value)}
-        autoComplete='off'
-      />
+      {isSearching ? (
+        <Loader2Icon className='animate-spin' />
+      ) : (
+        <h2 className='text-x text-red-500'>
+          {searchStr} : {deferredStr} :{debouncedSearchStr}
+        </h2>
+      )}
+      <LabelInput label='search' onChange={handleSearch} autoComplete='off' />
       <ul>
-        {(session.cart.length ? session.cart : data)
+        {session.cart
           ?.filter((item) => item.name.includes(debouncedSearchStr))
           .map((item) => (
             <li key={item.id}>
