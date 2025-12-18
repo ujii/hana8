@@ -2,7 +2,7 @@ import { useSession, type ItemType } from '../hooks/SessionContext';
 import Login from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Item from './Item';
-import Button from './ui/Button';
+import Btn from './ui/Btn';
 import { Loader2Icon, PlusIcon } from 'lucide-react';
 import {
   useEffect,
@@ -21,6 +21,7 @@ import LabelInput from './ui/LabelInput';
 import Spinner from './ui/Spinner';
 import { useFormStatus } from 'react-dom';
 import Posts from './Posts';
+import { Button } from './ui/button';
 
 export default function My() {
   const { session } = useSession();
@@ -140,9 +141,9 @@ export default function My() {
           {searchStr} : {deferredStr} :{debouncedSearchStr}
         </h2>
       )}
-      <form className='flex gap-2'>
+      <form className='flex gap-2 items-end'>
         <LabelInput label='ActionState' autoComplete='off' />
-        <button formAction={search}>Action</button>
+        <Button formAction={search}>Action</Button>
         <SearchButton />
       </form>
       <LabelInput
@@ -165,9 +166,9 @@ export default function My() {
               toggleAdding={toggleAdding}
             />
           ) : (
-            <Button onClick={toggleAdding} className=''>
+            <Btn onClick={toggleAdding} className=''>
               <PlusIcon />
-            </Button>
+            </Btn>
           )}
         </li>
       </ul>
@@ -178,7 +179,11 @@ export default function My() {
 function SearchButton() {
   const { pending, data } = useFormStatus();
   if (data) console.log('ddddddd>>', data, pending);
-  return <button disabled={pending}>SearchButton</button>;
+  return (
+    <Button variant={'secondary'} disabled={pending}>
+      SearchButton
+    </Button>
+  );
 }
 
 // const [newId, setId] = useState(0);
