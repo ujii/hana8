@@ -1,9 +1,16 @@
-import { type PropsWithChildren } from 'react';
-import Button from './ui/Button';
+import {
+  useEffect,
+  type PropsWithChildren,
+  useEffectEvent,
+  useCallback,
+} from 'react';
+import Btn from './ui/Btn';
+import clsx from 'clsx';
 import { useCounter } from '../hooks/CounterContext';
 import { useSession } from '../hooks/SessionContext';
 import { useToggle } from '../hooks/useToggle';
 import { useFetch } from '../hooks/useFetch';
+import { Button } from './ui/button';
 
 // type Prop = {
 //   name: string;
@@ -16,7 +23,7 @@ export default function Hello({ children }: PropsWithChildren) {
   const { count, plusCount } = useCounter();
 
   // const [toggler, toggle] = useReducer((p) => !p, false);
-  const [, toggle] = useToggle();
+  const [tog, toggle] = useToggle();
   const {
     session: { loginUser },
   } = useSession();
@@ -43,26 +50,36 @@ export default function Hello({ children }: PropsWithChildren) {
   //   console.log('effect primitive 123!!!');
   // }, [primitive]);
 
-  // useEffect(() => {
-  //   const array = [1, 2, 3];
-  //   console.log('effect Array!!!', array);
-  // }, []);
+  const t = useEffectEvent(() => console.log('effect - tog!!!', tog));
+
+  useEffect(() => {
+    t();
+    console.log('effect - count!!!', count);
+  }, [count]);
 
   return (
     <div className='border border-red-300 p-3 text-center'>
       {error && <h2 className='text-red-500'>Error: {error}</h2>}
-      <h2 className='text-2xl'>
-        {count + 1}: {isLoading ? '...' : user?.username}
+      <h2
+        style={{ backgroundColor: 'blue' }}
+        className={`text-2xl ${count % 2 === 0 ? 'text-blue-500' : 'text-inherit'}`}
+      >
+        {count + 1}: {tog ? 'T' : 'F'} :: {isLoading ? '...' : user?.username}
       </h2>
       <input type='text' onChange={toggle} />
-      <h2 className='text-2xl'>
+      <h2 className={clsx('text-2xl', { 'text-blue-500': count % 2 === 0 })}>
         Hello, {name}
-        {age && <small className='text-sm'>({age})</small>}
+        {age && (
+          <small className={clsx('text-sm', tog && 'bg-zinc-300')}>
+            ({age})
+          </small>
+        )}
       </h2>
       <div>{children}</div>
-      <Button className='font-bold' onClick={plusCount}>
+      <Btn className='font-bold' onClick={plusCount}>
         count + 1
-      </Button>
+      </Btn>
+      <Button variant={'outline'}>ShadcnBtn</Button>
       <button onClick={toggle}>Toggle</button>
     </div>
   );
