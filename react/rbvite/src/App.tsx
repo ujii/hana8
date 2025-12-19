@@ -9,8 +9,8 @@ import { Home } from 'lucide-react';
 import Posts from './components/Posts';
 import Profile from './components/Profile';
 import NotFound from './NotFound';
-import ItemRoute from './components/ItemRoute';
 import Items from './components/Items';
+import Item from './components/Item';
 
 function App() {
   const profileHandlerRef = useRef<ProfileHandler>(null);
@@ -27,24 +27,25 @@ function App() {
             path='/profile'
             element={<Profile ref={profileHandlerRef} />}
           />
-          <Route path='/items' element={<Items />} />
-          <Route path='/items/:id' element={<ItemRoute />} />
+          <Route path='/items'>
+            <Route index element={<Items />} />
+            <Route path=':id' element={<Item />} />
+          </Route>
           <Route path='/posts' element={<Posts />} />
           <Route path='/hello' element={<Hello />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
+        <a
+          href='#!'
+          onClick={(e) => {
+            e.preventDefault();
+            profileHandlerRef.current?.showLoginUser();
+            console.log('xxx>>', profileHandlerRef.current?.xxx);
+          }}
+        >
+          Show LoginUser
+        </a>
       </div>
-
-      <a
-        href='#!'
-        onClick={(e) => {
-          e.preventDefault();
-          profileHandlerRef.current?.showLoginUser();
-          console.log('xxx>>', profileHandlerRef.current?.xxx);
-        }}
-      >
-        Show LoginUser
-      </a>
     </SessionProvider>
   );
 }

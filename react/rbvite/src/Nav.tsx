@@ -8,7 +8,7 @@ export default function Nav() {
   } = useSession();
 
   return (
-    <nav className='flex justify-between m-5'>
+    <nav className='flex justify-between fixed bg-amber-100/70% w-full px-5'>
       <ul className='flex gap-5'>
         <li>
           <NavLink
@@ -36,12 +36,13 @@ export default function Nav() {
           <Link to={'/posts'}>Posts</Link>
         </li>
       </ul>
-
-      {loginUser?.name ? (
-        <small>{loginUser?.name}</small>
-      ) : (
-        <Link to={'/login'}>Login</Link>
-      )}
+      <div>
+        {loginUser?.name ? (
+          <small>{loginUser?.name}</small>
+        ) : (
+          <Link to={'/login'}>Login</Link>
+        )}
+      </div>
     </nav>
   );
 }
