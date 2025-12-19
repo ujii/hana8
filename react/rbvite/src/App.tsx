@@ -11,6 +11,7 @@ import Profile from './components/Profile';
 import NotFound from './NotFound';
 import Items from './components/Items';
 import Item from './components/Item';
+import ItemLayout from './components/ItemLayout';
 
 function App() {
   const profileHandlerRef = useRef<ProfileHandler>(null);
@@ -27,7 +28,7 @@ function App() {
             path='/profile'
             element={<Profile ref={profileHandlerRef} />}
           />
-          <Route path='/items'>
+          <Route path='/items' element={<ItemLayout />}>
             <Route index element={<Items />} />
             <Route path=':id' element={<Item />} />
           </Route>

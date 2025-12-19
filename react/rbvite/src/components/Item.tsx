@@ -16,7 +16,12 @@ import {
   SaveIcon,
 } from 'lucide-react';
 import LabelInput from './ui/LabelInput';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import {
+  Navigate,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { Button } from './ui/button';
 
 export default function Item() {
@@ -24,8 +29,11 @@ export default function Item() {
     session: { cart },
   } = useSession();
   const navigate = useNavigate();
+  // q=111&p=222
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
+  const [searchParam, setSearchParam] = useSearchParams({ q: '', p: 'xxx' });
+  console.log('🚀 ~ searchParam:', Object.fromEntries(searchParam.entries()));
 
   const { removeItem, saveItem } = useSession();
   const [isEditing, setEditing] = useState(!id);
@@ -35,6 +43,8 @@ export default function Item() {
 
   useEffect(() => {
     if (isEditing) nameRef.current?.focus();
+    // setSearchParam('q=100&p=200')
+    // setSearchParam({ q: '1000' });
   }, [isEditing]);
 
   const item = !id
@@ -87,7 +97,7 @@ export default function Item() {
     setEditing(false);
     setDirty(false);
 
-    if (!id) navigate(`/items/${savedId}`);
+    if (!id) navigate(`/items/${savedId}`, { replace: true });
   };
 
   const makeEdit = () => {
