@@ -8,7 +8,7 @@ export default function Nav() {
   } = useSession();
 
   return (
-    <nav className='flex justify-between fixed bg-amber-100/70% w-full px-5'>
+    <nav className='flex justify-between fixed bg-amber-100/70 w-full px-5'>
       <ul className='flex gap-5'>
         <li>
           <NavLink

@@ -10,8 +10,10 @@ import Posts from './components/Posts';
 import Profile from './components/Profile';
 import NotFound from './NotFound';
 import Items from './components/Items';
-import Item from './components/Item';
 import ItemLayout from './components/ItemLayout';
+import ItemDetail from './components/ItemDetail';
+import ItemDetailLayout from './components/ItemDetailLayout.1';
+import ItemEdit from './components/ItemEdit';
 
 function App() {
   const profileHandlerRef = useRef<ProfileHandler>(null);
@@ -30,7 +32,10 @@ function App() {
           />
           <Route path='/items' element={<ItemLayout />}>
             <Route index element={<Items />} />
-            <Route path=':id' element={<Item />} />
+            <Route path=':id' element={<ItemDetailLayout />}>
+              <Route index element={<ItemDetail />} />
+              <Route path='edit' element={<ItemEdit />} />
+            </Route>
           </Route>
           <Route path='/posts' element={<Posts />} />
           <Route path='/hello' element={<Hello />} />
