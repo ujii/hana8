@@ -1,29 +1,91 @@
 import { useSession, type ItemType } from '../hooks/SessionContext';
-import Login from './Login';
-import Profile, { type ProfileHandler } from './Profile';
-import Item from './Item';
-import Btn from './ui/Btn';
-import { Loader2Icon, PlusIcon } from 'lucide-react';
-import {
-  useEffect,
-  useRef,
-  useState,
-  useReducer,
-  useMemo,
-  useDeferredValue,
-  type ChangeEvent,
-  useTransition,
-  useActionState,
-} from 'react';
-import { useInterval, useThrottle } from '../hooks/useTimer';
-import { useFetch } from '../hooks/useFetch';
+import { useEffect, useState, useMemo, useActionState } from 'react';
+import { useInterval } from '../hooks/useTimer';
 import LabelInput from './ui/LabelInput';
 import Spinner from './ui/Spinner';
 import { useFormStatus } from 'react-dom';
-import Posts from './Posts';
 import { Button } from './ui/button';
 
 export default function My() {
+  const { session } = useSession();
+
+  const [badSec, setBadSec] = useState(0);
+  const [goodSec, setGoodSec] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => setBadSec((p) => p + 1), 1000);
+  }, []);
+
+  const ff = () => {
+    setGoodSec((p) => p + 1);
+  };
+  const { reset, clear } = useInterval(ff, 1000);
+
+  const totalPrice = useMemo(
+    () => session.cart.reduce((acc, item) => acc + item.price, 0),
+    [session.cart]
+  );
+
+  const [results, search, isPending] = useActionState(
+    async (preResults: ItemType[], formData: FormData) => {
+      const str = formData.get('ActionState') as string;
+      console.log('******', preResults, str);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return session.cart.filter((item) => item.name.includes(str));
+    },
+    []
+  );
+
+  return (
+    <>
+      <h1 className='text-xl'>
+        bad: {badSec}, good: {goodSec}
+      </h1>
+      <div className='flex space-x-3'>
+        <Button
+          variant={'outline'}
+          onClick={() => {
+            setGoodSec(0);
+            reset();
+          }}
+        >
+          reset
+        </Button>
+        <Button variant={'secondary'} onClick={clear}>
+          stop
+        </Button>
+      </div>
+      <hr />
+
+      <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
+
+      {isPending ? (
+        <Spinner />
+      ) : (
+        <div>SR_ActionState :{results.map((item) => item.name).join()}</div>
+      )}
+
+      {/* <form action={search}> */}
+      <form className='flex gap-2 items-end'>
+        <LabelInput label='ActionState' autoComplete='off' />
+        <Button formAction={search}>Action</Button>
+        <SearchButton />
+      </form>
+    </>
+  );
+}
+
+function SearchButton() {
+  const { pending, data } = useFormStatus();
+  if (data) console.log('ddddddd>>', data, pending);
+  return (
+    <Button variant={'secondary'} disabled={pending}>
+      SearchButton
+    </Button>
+  );
+}
+
+/*
   const { session } = useSession();
   // const [isAdding, setAdding] = useState(false);
   // const toggleAdding = () => () => setAdding((pre) => !pre);
@@ -174,69 +236,4 @@ export default function My() {
       </ul>
     </>
   );
-}
-
-function SearchButton() {
-  const { pending, data } = useFormStatus();
-  if (data) console.log('ddddddd>>', data, pending);
-  return (
-    <Button variant={'secondary'} disabled={pending}>
-      SearchButton
-    </Button>
-  );
-}
-
-// const [newId, setId] = useState(0);
-// const [newName, setName] = useState('');
-// const [newPrice, setPrice] = useState(0);
-
-// const modifyInfo = (e: FormEvent<HTMLFormElement>) => {
-//   e.preventDefault();
-
-//   modifyItem(newId, newName, newPrice);
-//   setId(0);
-// };
-
-// {
-//   newId === id ? (
-//     <form onSubmit={modifyInfo} className='flex gap-1'>
-//       <LabelInput
-//         placeholder={`${name}`}
-//         onChange={(e) => setName(e.target.value)}
-//       ></LabelInput>
-//       <LabelInput
-//         type='number'
-//         placeholder={`${price}`}
-//         onChange={(e) => setPrice(+e.target.value)}
-//       ></LabelInput>
-//       <Button
-//         type='submit'
-//         className='text-blue-600 flex items-center justify-center'
-//       >
-//         <CheckIcon></CheckIcon>
-//       </Button>
-//     </form>
-//   ) : (
-//     <>
-//       <Small>{id}.</Small> {name}
-//       <Small>{price.toLocaleString()}원</Small>
-//       <Button
-//         onClick={() => removeItem(id)}
-//         className='ml-2 px-1 py-0 text-sm bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-2xl
-//             active:scale-150 transition duration-300'
-//       >
-//         x
-//       </Button>
-//       <Button
-//         onClick={() => {
-//           {
-//             setId(id);
-//           }
-//         }}
-//         className='border-transparent flex items-center justify-center px-0 py-0 w-5 h-5'
-//       >
-//         <PencilIcon></PencilIcon>
-//       </Button>
-//     </>
-//   );
-// }
+*/

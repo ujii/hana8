@@ -1,24 +1,51 @@
-import { useRef, useState } from 'react';
-import './App.css';
+import { useRef } from 'react';
 import Hello from './components/Hello';
 import My from './components/My';
-import { useCounter } from './hooks/CounterContext';
-import type { LoginHandler } from './components/Login';
 import { SessionProvider } from './hooks/SessionContext';
-import { cn } from './lib/utils';
+import type { ProfileHandler } from './components/Profile';
+import Nav from './Nav';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from 'lucide-react';
+import Posts from './components/Posts';
+import Profile from './components/Profile';
+import NotFound from './NotFound';
+import ItemRoute from './components/ItemRoute';
+import Items from './components/Items';
 
 function App() {
-  // const [count, setCount] = useState(0);
-  const { count } = useCounter();
+  const profileHandlerRef = useRef<ProfileHandler>(null);
 
   return (
-    <div className='grid place-items-center h-screen mx-2'>
-      <h1 className={cn('text-3xl mt-3 m-5')}>count: {count}</h1>
-      <SessionProvider>
-        <My />
-        {count < 5 && <Hello>반갑습니다</Hello>}
-      </SessionProvider>
-    </div>
+    <SessionProvider>
+      <Nav />
+
+      <div className='grid place-items-center h-screen mx-2'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/my' element={<My />} />
+          <Route
+            path='/profile'
+            element={<Profile ref={profileHandlerRef} />}
+          />
+          <Route path='/items' element={<Items />} />
+          <Route path='/items/:id' element={<ItemRoute />} />
+          <Route path='/posts' element={<Posts />} />
+          <Route path='/hello' element={<Hello />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </div>
+
+      <a
+        href='#!'
+        onClick={(e) => {
+          e.preventDefault();
+          profileHandlerRef.current?.showLoginUser();
+          console.log('xxx>>', profileHandlerRef.current?.xxx);
+        }}
+      >
+        Show LoginUser
+      </a>
+    </SessionProvider>
   );
 }
 
@@ -40,3 +67,15 @@ export default App;
 //    render();
 // }
 // return [x, setAction];
+
+/*
+  return (
+    <div className='grid place-items-center h-screen mx-2'>
+      <h1 className={cn('text-3xl mt-3 m-5')}>count: {count}</h1>
+      <SessionProvider>
+        <My />
+        {count < 5 && <Hello>반갑습니다</Hello>}
+      </SessionProvider>
+    </div>
+  );
+*/
