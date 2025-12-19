@@ -1,5 +1,5 @@
 import { useSession, type ItemType } from '@/hooks/SessionContext';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Btn from './ui/Btn';
 import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';

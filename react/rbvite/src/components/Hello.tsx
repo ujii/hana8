@@ -1,9 +1,4 @@
-import {
-  useEffect,
-  type PropsWithChildren,
-  useEffectEvent,
-  useCallback,
-} from 'react';
+import { useEffect, type PropsWithChildren, useEffectEvent } from 'react';
 import Btn from './ui/Btn';
 import clsx from 'clsx';
 import { useCounter } from '../hooks/CounterContext';

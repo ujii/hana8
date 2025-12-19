@@ -1,9 +1,4 @@
-import {
-  useId,
-  type ChangeEvent,
-  type RefObject,
-  type HTMLInputAutoCompleteAttribute,
-} from 'react';
+import { useId, type ChangeEvent, type RefObject } from 'react';
 
 type Props = {
   type?: string;

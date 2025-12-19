@@ -1,12 +1,6 @@
-import {
-  useRef,
-  type FormEvent,
-  useEffect,
-  useImperativeHandle,
-  type RefObject,
-} from 'react';
+import { useRef, type FormEvent, useEffect, useImperativeHandle } from 'react';
 import Btn from './ui/Btn';
-import { useSession, type LoginFunction } from '../hooks/SessionContext';
+import { useSession } from '../hooks/SessionContext';
 import LabelInput from './ui/LabelInput';
 
 export type LoginHandler = {

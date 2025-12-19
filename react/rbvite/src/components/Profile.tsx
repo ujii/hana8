@@ -1,5 +1,5 @@
 import { useImperativeHandle, type RefObject } from 'react';
-import { useSession, type LoginUser } from '../hooks/SessionContext';
+import { useSession } from '../hooks/SessionContext';
 import Btn from './ui/Btn';
 
 type Prop = {

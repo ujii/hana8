@@ -12,7 +12,7 @@ import NotFound from './NotFound';
 import Items from './components/Items';
 import ItemLayout from './components/ItemLayout';
 import ItemDetail from './components/ItemDetail';
-import ItemDetailLayout from './components/ItemDetailLayout.1';
+import ItemDetailLayout from './components/ItemDetailLayout';
 import ItemEdit from './components/ItemEdit';
 
 function App() {

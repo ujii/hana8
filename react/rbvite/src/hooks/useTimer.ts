@@ -61,40 +61,40 @@ function useTime<T extends (...args: Parameters<T>) => void>(
 
   return { clear, reset, timerRef };
 }
-function time_OLD<T extends () => void>(
-  f: typeof setTimeout | typeof setInterval,
-  cb: T,
-  delay: number,
-  ...args: Parameters<T>
-) {
-  const [timer, setTimer] = useState<ReturnType<typeof f>>();
+// function time_OLD<T extends () => void>(
+//   f: typeof setTimeout | typeof setInterval,
+//   cb: T,
+//   delay: number,
+//   ...args: Parameters<T>
+// ) {
+//   const [timer, setTimer] = useState<ReturnType<typeof f>>();
 
-  const setTime = () => {
-    const timer = f(cb, delay, ...args);
-    setTimer(timer);
-    return timer;
-  };
-  const clear = (t?: ReturnType<typeof f>) =>
-    f === setTimeout ? clearTimeout(t || timer) : clearInterval(t || timer);
-  const reset = () => {
-    clear();
-    // setTimer(f(cb, delay, ...args));
-    setTime();
-  };
+//   const setTime = () => {
+//     const timer = f(cb, delay, ...args);
+//     setTimer(timer);
+//     return timer;
+//   };
+//   const clear = (t?: ReturnType<typeof f>) =>
+//     f === setTimeout ? clearTimeout(t || timer) : clearInterval(t || timer);
+//   const reset = () => {
+//     clear();
+//     // setTimer(f(cb, delay, ...args));
+//     setTime();
+//   };
 
-  useEffect(() => {
-    // const timer = f(cb, delay, ...args);
-    // setTimer(timer);
+//   useEffect(() => {
+//     // const timer = f(cb, delay, ...args);
+//     // setTimer(timer);
 
-    // setTimer(f(cb, delay, ...args));
-    const timer = setTime();
+//     // setTimer(f(cb, delay, ...args));
+//     const timer = setTime();
 
-    // return () => clearTimeout(timer);
-    return () => clear(timer);
-  }, []);
+//     // return () => clearTimeout(timer);
+//     return () => clear(timer);
+//   }, []);
 
-  return { clear, reset };
-}
+//   return { clear, reset };
+// }
 
 export function useInterval<T extends (...args: Parameters<T>) => void>(
   cb: T,

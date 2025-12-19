@@ -8,7 +8,7 @@ import {
 } from 'react';
 import LabelInput from './ui/LabelInput';
 import Spinner from './ui/Spinner';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Items() {
   const { session } = useSession();
