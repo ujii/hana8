@@ -1,12 +1,14 @@
-import Image from 'next/image';
-import { use } from 'react';
 import { blurDataURL } from '@/app/(greetings)/hi/constants';
 import Modal from '@/components/Modal';
+import Image from 'next/image';
+import { use } from 'react';
 import type { Photo } from '../../../page';
 
 type Props = {
   params: Promise<{ photoId: string }>;
 };
+
+export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
   const photos: Awaited<Photo[]> = await fetch(
