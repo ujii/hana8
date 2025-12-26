@@ -7,6 +7,7 @@ export default function HelloId() {
   return `Hello id is ${id}`;
 }
 
+// 서버 컴포넌트
 // type Props = {
 //   params: Promise<{ id: number }>;
 // };
