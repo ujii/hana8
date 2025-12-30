@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { AuthError } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Github from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
@@ -30,15 +30,19 @@ export const {
     Github,
   ],
   callbacks: {
-    async signIn({ profile, user }) {
-      console.log('🚀 signIn - profile:', profile);
+    async signIn({ user, account }) {
+      console.log('🚀 ~ account:', account);
+      // console.log('🚀 signIn - profile:', profile);
       console.log('🚀 signIn - user:', user);
+      if (user.email === 'jade@gmail.com')
+        throw makeAuthError('EmailSignInError', 'Not Exists Email!');
+
       return true;
     },
     async jwt({ token, user, trigger }) {
-      console.log('🚀 jwt - token:', token);
-      console.log('🚀 jwt - user:', user);
-      console.log('🚀 jwt - trigger:', trigger);
+      // console.log('🚀 jwt - token:', token);
+      // console.log('🚀 jwt - user:', user);
+      if (trigger) console.log('🚀 jwt - trigger:', trigger);
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -65,3 +69,9 @@ export const {
   trustHost: true, // ngineX 사용하려면 true(?)
   jwt: { maxAge: 30 * 60 },
 });
+
+const makeAuthError = (type: AuthError['type'], message?: string) => {
+  const err = new AuthError(message);
+  err.type = type;
+  return err;
+};
