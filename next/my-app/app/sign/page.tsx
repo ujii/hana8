@@ -1,38 +1,29 @@
 import { Button } from '@/components/ui/button';
-import { signIn } from '@/lib/auth';
-
-type Provider = 'google' | 'github';
+import { Separator } from '@/components/ui/separator';
+import { loginGithub, loginGoogle } from '@/lib/sign.action';
+import SignForm from './SignForm';
 
 export default function SignPage() {
-  const login = async (provider: Provider) => {
-    'use server';
-    await signIn(provider, {
-      redirectTo: '/hello',
-    });
-  };
+  // const login = async (provider: Provider) => {
+  //   'use server';
+  //   await signIn(provider, {
+  //     redirectTo: '/hello',
+  //   });
+  // };
 
   return (
     <>
       <h1 className="text-xl">Sign In</h1>
       <form className="flex gap-3">
-        <Button
-          formAction={async () => {
-            'use server';
-            await login('google');
-          }}
-        >
-          Google
-        </Button>
-
-        <Button
-          formAction={async () => {
-            'use server';
-            await login('github');
-          }}
-        >
-          Github
-        </Button>
+        <input type="hidden" name="redirectTo" value="/hello" />
+        <Button formAction={loginGoogle}>Google</Button>
+        <Button formAction={loginGithub}>Github</Button>
       </form>
+
+      <Separator className="my-3" />
+      <SignForm redirectTo="/hello" />
     </>
   );
 }
+
+// Controller 역할
