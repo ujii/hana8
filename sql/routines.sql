@@ -44,13 +44,13 @@ delimiter ;
 delimiter //
 create trigger tr_Subject_after_update after update on Subject for each row
 begin
-	IF NEW.prof <> OLD.prof THEN
-		update Prof set subjectcnt = subjectcnt + 1
-		where id = NEW.prof;
-		
-		update Prof set subjectcnt = subjectcnt + 1
-		where id = NEW.prof;
-	END IF;
+    IF NEW.prof <> OLD.prof THEN
+        update Prof set subjectcnt = subjectcnt + 1
+         where id = NEW.prof;
+         
+        update Prof set subjectcnt = subjectcnt - 1
+         where id = OLD.prof;
+    END IF;
 end //
 delimiter ;
 
@@ -74,3 +74,11 @@ call sp_emps_by_deptid(1);
 -- grant all privileges on schooldb.sp_emps_by_deptid to Kildong@'&';
 
 call sp_depts_by_cursor();
+
+select concat(e.ename, '(', d.dname, ')'), f_empinfo(e.id)
+from Emp e inner join Dept d on e.dept = d.id where e.id = 2;
+
+select f_empinfo(5);
+SHOW TRIGGERS;
+
+show warnings;
