@@ -65,7 +65,7 @@ export default function Item() {
     const name = nameRef.current?.value;
     const price = priceRef.current?.value;
 
-    let msg;
+    let msg = '';
     let ref: RefObject<HTMLInputElement | null> | null = null;
 
     if (!name) {
