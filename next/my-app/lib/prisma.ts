@@ -10,6 +10,15 @@ const adapter = new PrismaMariaDb({
   database: process.env.DATABASE_NAME,
   connectionLimit: 5,
 });
-const prisma = new PrismaClient({ adapter });
 
-export { prisma };
+// HMR(Hot Module Replacer) 변경된 것만 replace
+const newInstance = () => new PrismaClient({ adapter });
+
+// biome-ignore lint/suspicious/noShadowRestrictedNames: 'prisma'
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof newInstance>;
+} & typeof global;
+
+export const prisma = globalThis.prismaGlobal || newInstance;
+
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma;
