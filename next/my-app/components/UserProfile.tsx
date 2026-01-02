@@ -1,21 +1,20 @@
 'use client';
 
 import { redirect } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import type { Session } from 'next-auth';
 // import Image from 'next/image';
 // import d from '@/public/profile_dummy.png';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { signOut } from '@/lib/auth';
+import { logout } from '@/lib/sign.action';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { logout } from '@/lib/sign.action';
 
 const DummyProfileImage = '/profile_dummy.png';
 
-export default function UserProfile() {
-  const { data } = useSession();
+export default function UserProfile({ data }: { data: Session }) {
+  // const { data } = useSession();
   console.log('🚀 ~ UserProfile - session:', data);
   if (!data || !data.user) redirect('/sign');
 
