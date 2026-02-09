@@ -5,12 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e017aa0-0000-41ea-ae75-8a671b7377c4" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/TriangleSnail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hana8/hello/trythis/SnailTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyleidea-libs/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Grade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/TUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Operator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.viminfo" beforeDir="false" afterPath="$PROJECT_DIR$/../../.viminfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/SpiralArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Snail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Calc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Calc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/ScanScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/ScanScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Snail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Snail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" afterDir="false" />
     </list>
@@ -40,12 +51,20 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Record" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -66,6 +85,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
+    "last_opened_file_path": "C:/Users/jane_/workspace/hana8/java/naver-checkstyle-rules.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,7 +94,8 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -112,8 +133,35 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="hello [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="-Dfile.encoding=UTF-8" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.hello [build]" />
+      <item itemvalue="Gradle.SnailTest.makeSnail" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.hello [build]" />
         <item itemvalue="Gradle.SnailTest.makeSnail" />
       </list>
     </recent_temporary>
@@ -128,11 +176,21 @@
       <updated>1710166266126</updated>
       <workItem from="1770290122189" duration="188000" />
       <workItem from="1770290347778" duration="147000" />
-      <workItem from="1770335363876" duration="10687000" />
+      <workItem from="1770335363876" duration="14858000" />
+      <workItem from="1770534241452" duration="692000" />
+      <workItem from="1770535293566" duration="1498000" />
+      <workItem from="1770536831111" duration="657000" />
+      <workItem from="1770537510818" duration="5071000" />
+      <workItem from="1770594779438" duration="782000" />
+      <workItem from="1770595585623" duration="5447000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
