@@ -5,23 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e017aa0-0000-41ea-ae75-8a671b7377c4" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyleidea-libs/readme.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Grade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/TUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Operator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/hana8/hello/trythis/OperatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.viminfo" beforeDir="false" afterPath="$PROJECT_DIR$/../../.viminfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Calc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Calc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/ScanScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/ScanScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Snail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Snail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Operator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" afterDir="false" />
     </list>
@@ -50,10 +37,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Record" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -108,7 +95,7 @@
       <recent name="com.hana8.hello" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.OperatorTest.getOperation">
     <configuration name="SnailTest.makeSnail" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -155,12 +142,66 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="OperatorTest.getNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hello.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hana8.hello.trythis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hana8.hello.trythis" />
+      <option name="MAIN_CLASS_NAME" value="com.hana8.hello.trythis.OperatorTest" />
+      <option name="METHOD_NAME" value="getNumber" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OperatorTest.getOperation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hello.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hana8.hello.trythis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hana8.hello.trythis" />
+      <option name="MAIN_CLASS_NAME" value="com.hana8.hello.trythis.OperatorTest" />
+      <option name="METHOD_NAME" value="getOperation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OperatorTest.testGetNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hello.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hana8.hello.trythis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hana8.hello.trythis" />
+      <option name="MAIN_CLASS_NAME" value="com.hana8.hello.trythis.OperatorTest" />
+      <option name="METHOD_NAME" value="testGetNumber" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Gradle.hello [build]" />
       <item itemvalue="Gradle.SnailTest.makeSnail" />
+      <item itemvalue="JUnit.OperatorTest.getNumber" />
+      <item itemvalue="JUnit.OperatorTest.getOperation" />
+      <item itemvalue="JUnit.OperatorTest.testGetNumber" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OperatorTest.getOperation" />
+        <item itemvalue="JUnit.OperatorTest.testGetNumber" />
+        <item itemvalue="JUnit.OperatorTest.getNumber" />
         <item itemvalue="Gradle.hello [build]" />
         <item itemvalue="Gradle.SnailTest.makeSnail" />
       </list>
@@ -182,7 +223,7 @@
       <workItem from="1770536831111" duration="657000" />
       <workItem from="1770537510818" duration="5071000" />
       <workItem from="1770594779438" duration="782000" />
-      <workItem from="1770595585623" duration="5447000" />
+      <workItem from="1770595585623" duration="7766000" />
     </task>
     <servers />
   </component>
