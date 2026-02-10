@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e017aa0-0000-41ea-ae75-8a671b7377c4" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/JavaTime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.viminfo" beforeDir="false" afterPath="$PROJECT_DIR$/../../.viminfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" afterDir="false" />
     </list>
@@ -226,7 +228,7 @@
       <workItem from="1770537510818" duration="5071000" />
       <workItem from="1770594779438" duration="782000" />
       <workItem from="1770595585623" duration="22026000" />
-      <workItem from="1770681626062" duration="5453000" />
+      <workItem from="1770681626062" duration="12362000" />
     </task>
     <servers />
   </component>
