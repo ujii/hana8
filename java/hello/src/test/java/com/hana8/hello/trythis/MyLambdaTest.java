@@ -48,5 +48,8 @@ class MyLambdaTest {
 		assertThat(sum2).isEqualTo(numbers.stream().reduce(0, (a, b) -> a * b));
 		assertThat(sum3).isEqualTo(3628800);
 		assertThat(sum3).isEqualTo(numbers.stream().reduce(10, (a, b) -> a * b));
+
+		System.out.println("numbers.stream().reduce(10, (a, b) -> a * b) = " + numbers.stream()
+			.reduce(10, (a, b) -> a * b));
 	}
 }
