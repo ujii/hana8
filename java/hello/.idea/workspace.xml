@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e017aa0-0000-41ea-ae75-8a671b7377c4" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Emp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.viminfo" beforeDir="false" afterPath="$PROJECT_DIR$/../../.viminfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/StreamPlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/StreamPlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hana8/hello/trythis/MyLambdaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hana8/hello/trythis/MyLambdaTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" afterDir="false" />
     </list>
@@ -52,6 +51,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.sdkman/candidates/java/21.0.9-tem/lib/src.zip!/java.base/java/lang/String.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.sdkman/candidates/java/21.0.9-tem/lib/src.zip!/java.base/java/util/stream/Collectors.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="OptimizeOnSaveOptions">
@@ -236,7 +236,8 @@
       <workItem from="1770681626062" duration="15326000" />
       <workItem from="1770772245974" duration="11227000" />
       <workItem from="1770854490198" duration="20397000" />
-      <workItem from="1770940920499" duration="3855000" />
+      <workItem from="1770940920499" duration="17418000" />
+      <workItem from="1771458816987" duration="3788000" />
     </task>
     <servers />
   </component>
