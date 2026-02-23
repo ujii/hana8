@@ -12,7 +12,7 @@ public class Nio {
 	private final static Path path = Path.of("t.txt");
 
 	public static void main(String[] args) throws IOException {
-		smallFile();
+		// smallFile();
 		bigFileWrite();
 		bigFileRead();
 	}
@@ -20,7 +20,7 @@ public class Nio {
 	private static void bigFileWrite() {
 		try (BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
 			for (int i = 0; i < 1000; i++) {
-				bw.write("write" + i);
+				bw.write("write" + i + "\n");
 			}
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
