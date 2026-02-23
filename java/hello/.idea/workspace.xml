@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e017aa0-0000-41ea-ae75-8a671b7377c4" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/thread/Alarm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/Min.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.viminfo" beforeDir="false" afterPath="$PROJECT_DIR$/../../.viminfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Parent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Reflection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Reflection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Reflects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/trythis/Reflects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" afterDir="false" />
     </list>
@@ -242,7 +238,7 @@
       <workItem from="1770940920499" duration="17418000" />
       <workItem from="1771458816987" duration="13690000" />
       <workItem from="1771488772807" duration="302000" />
-      <workItem from="1771805309111" duration="1142000" />
+      <workItem from="1771805309111" duration="1481000" />
     </task>
     <servers />
   </component>
