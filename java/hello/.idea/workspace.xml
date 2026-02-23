@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e017aa0-0000-41ea-ae75-8a671b7377c4" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hana8/hello/io/IOStream.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.viminfo" beforeDir="false" afterPath="$PROJECT_DIR$/../../.viminfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/t.txt" beforeDir="false" afterPath="$PROJECT_DIR$/t.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../next/my-app/components/ui/input.tsx" afterDir="false" />
     </list>
@@ -105,9 +102,22 @@
       <recent name="com.hana8.hello.oop" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IOStream">
+  <component name="RunManager" selected="Application.Nio">
     <configuration name="IOStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.hana8.hello.io.IOStream" />
+      <module name="hello.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hana8.hello.io.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Nio" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.hana8.hello.io.Nio" />
       <module name="hello.main" />
       <extension name="coverage">
         <pattern>
@@ -140,22 +150,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
       <method v="2" />
-    </configuration>
-    <configuration name="OperatorTest.getNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hello.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.hana8.hello.trythis.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.hana8.hello.trythis" />
-      <option name="MAIN_CLASS_NAME" value="com.hana8.hello.trythis.OperatorTest" />
-      <option name="METHOD_NAME" value="getNumber" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="OperatorTest.getOperation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hello.test" />
@@ -191,18 +185,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.IOStream" />
+      <item itemvalue="Application.Nio" />
       <item itemvalue="Gradle.hello [build]" />
-      <item itemvalue="JUnit.OperatorTest.getNumber" />
       <item itemvalue="JUnit.OperatorTest.getOperation" />
       <item itemvalue="JUnit.OperatorTest.testGetNumber" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Nio" />
         <item itemvalue="Application.IOStream" />
         <item itemvalue="Gradle.hello [build]" />
         <item itemvalue="JUnit.OperatorTest.getOperation" />
         <item itemvalue="JUnit.OperatorTest.testGetNumber" />
-        <item itemvalue="JUnit.OperatorTest.getNumber" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +223,7 @@
       <workItem from="1770940920499" duration="17418000" />
       <workItem from="1771458816987" duration="13690000" />
       <workItem from="1771488772807" duration="302000" />
-      <workItem from="1771805309111" duration="6604000" />
+      <workItem from="1771805309111" duration="7072000" />
     </task>
     <servers />
   </component>
