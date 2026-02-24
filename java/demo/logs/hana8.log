@@ -1,0 +1,4 @@
+[2026-02-24 11:36:14:1184][restartedMain] INFO  com.hana8.demo.DemoApplication - Starting DemoApplication using Java 21.0.9 with PID 19500 (C:\Users\jane_\workspace\hana8\java\demo\build\classes\java\main started by jane_ in C:\Users\jane_\workspace\hana8\java\demo)
+[2026-02-24 11:36:14:1190][restartedMain] DEBUG com.hana8.demo.DemoApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+[2026-02-24 11:36:14:1191][restartedMain] INFO  com.hana8.demo.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[2026-02-24 11:36:16:3194][restartedMain] INFO  com.hana8.demo.DemoApplication - Started DemoApplication in 2.91 seconds (process running for 4.15)
