@@ -51,6 +51,10 @@ public class DemoApplication {
 
 		LazyCallService lazy = ctx.getBean(LazyCallService.class);
 		log.debug("lazy = {}", lazy.call());
+		log.debug("lazy.name = {}", lazy.getName());
+		log.debug("lazy.name = {}", lazy.getPassword());
+		log.debug("lazy.emailname = {}", lazy.getEmailName());
+		log.debug("lazy.emailpwd = {}", lazy.getEmailPassword());
 
 	}
 

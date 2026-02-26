@@ -7,6 +7,8 @@ build/
 
 logs
 
+db.properties
+mail.properties
 *security.properties
 *security.yml
 
