@@ -1,19 +1,9 @@
 package com.hana8.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class HelpCallService implements GreetingService {
-
-	private final HelloService service;
-
-	@Autowired
-	public void setService(HelloService service) {
-		this.service = service;
-	}
-
 	@Override
 	public String call() {
 		return "Help Call Service!";
@@ -21,6 +11,14 @@ public class HelpCallService implements GreetingService {
 
 	@Override
 	public String sayHello() {
-		return service.sayHello();
+		return "Help!";
+	}
+
+	public void initialize() {
+		System.out.println("HelpCall Initialization!");
+	}
+
+	public void destroy() {
+		System.out.println("HelpCall Destroyment!");
 	}
 }
