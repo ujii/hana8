@@ -18,7 +18,6 @@ public class TelnoSerializer extends StdSerializer<String> {
 		}
 
 		gen.writeString(format(value.replaceAll("[\\s-]", "")));
-
 	}
 
 	private String format(String tel) {
