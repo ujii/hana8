@@ -28,7 +28,7 @@ public class PostRepositoryImpl implements PostRepository {
 	}
 
 	@Override
-	public Post createPost(PostAddDTO post) {
+	public Post createPost(PostDTO post) {
 		// Long id = posts.keySet().stream().max(Long::compareTo).orElse(0L) + 1;
 		// Post newer = new Post();
 		// newer.setId(id);
@@ -36,7 +36,7 @@ public class PostRepositoryImpl implements PostRepository {
 
 		Long id = posts.stream().max(Comparator.comparingLong(Post::getId)).orElse(null).getId() + 1L;
 
-		Post newer = Post.builder().id(id).title(post.getTitle()).body(post.getBody()).build();
+		Post newer = Post.builder().id(id).title(post.getTitle()).body(post.getBody()).writer(post.getWriter()).build();
 
 		// posts.put(id, newer);
 		posts.add(newer);
@@ -45,12 +45,13 @@ public class PostRepositoryImpl implements PostRepository {
 	}
 
 	@Override
-	public Post updatePost(PostEditDTO post) {
+	public Post updatePost(PostDTO post) {
 		// Post oldPost = posts.get(post.getId());
 		Post oldPost = posts.stream().filter(op -> op.getId() == post.getId()).findFirst().get();
 		oldPost.setTitle(post.getTitle());
 		oldPost.setBody(post.getBody());
 		// oldPost.setWriter(post.getWriter());
+		oldPost.setWriter(post.getWriter());
 
 		return oldPost;
 	}

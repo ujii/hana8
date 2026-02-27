@@ -9,9 +9,9 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "title": "title 1",
+  "title": " ",
   "body": "body 1",
-  "writer": "Hong"
+  "writer": "1"
 }
 
 ### post-regist
@@ -29,11 +29,11 @@ GET {{baseUrl}}/1
 
 
 ### post-update
-PUT {{baseUrl}}/0
+PUT {{baseUrl}}/1
 Content-Type: application/json
 
 {
-  "title": "title 1xxx",
+  "title": "title 1x",
   "body": "body 1xxx",
   "writer": "Hongxxx"
 }

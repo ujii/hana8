@@ -1,6 +1,9 @@
 spring:
   application:
     name: demo
+  web:
+    resources:
+      add-mappings: false
 
   devtools:
     livereload:
@@ -8,6 +11,3 @@ spring:
     restart:
       enabled: true
       additional-paths: src/main/java
-
-db:
-  name: rootuser
