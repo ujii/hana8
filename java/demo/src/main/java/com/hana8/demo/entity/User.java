@@ -1,12 +1,17 @@
 package com.hana8.demo.entity;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.hana8.demo.common.enums.BloodType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,11 +47,17 @@ public class User {
 	@Column(nullable = false, length = 12)
 	private String telno;
 
+	@Enumerated(EnumType.STRING)
+	private BloodType bloodType;
+
 	@CreationTimestamp
 	private Instant createdAt;
 
 	@CreationTimestamp
 	private LocalDateTime updatedAt;
+
+	@Column(precision = 7, scale = 2)
+	private BigDecimal salhour;
 
 	@Transient
 	private int auth; // 테이블에 생성 안됨
