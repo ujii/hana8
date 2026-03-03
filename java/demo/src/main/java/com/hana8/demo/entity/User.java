@@ -1,10 +1,6 @@
 package com.hana8.demo.entity;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import com.hana8.demo.common.enums.BloodType;
 
@@ -19,9 +15,13 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "User", uniqueConstraints = {
 	@UniqueConstraint(
 		name = "uniq_User_email",
@@ -32,7 +32,7 @@ import lombok.Data;
 		columnNames = {"username", "telno"}
 	)
 })
-public class User {
+public class User extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, columnDefinition = "int unsigned") // update할 때 이 컬럼 제외 & unsigned int로 설정
@@ -49,12 +49,6 @@ public class User {
 
 	@Enumerated(EnumType.STRING)
 	private BloodType bloodType;
-
-	@CreationTimestamp
-	private Instant createdAt;
-
-	@CreationTimestamp
-	private LocalDateTime updatedAt;
 
 	@Column(precision = 7, scale = 2)
 	private BigDecimal salhour;
