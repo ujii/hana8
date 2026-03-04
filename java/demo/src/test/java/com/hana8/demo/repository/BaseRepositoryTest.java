@@ -1,4 +1,4 @@
-package com.hana8.demo.entity;
+package com.hana8.demo.repository;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;

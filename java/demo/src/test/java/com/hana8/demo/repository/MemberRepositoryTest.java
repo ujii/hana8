@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import com.hana8.demo.common.enums.BloodType;
-import com.hana8.demo.entity.BaseRepositoryTest;
 import com.hana8.demo.entity.Member;
 
 @Rollback(true)
