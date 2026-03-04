@@ -13,14 +13,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(uniqueConstraints = {
 	@UniqueConstraint(
-		name = "uniq_Member_email",
+		name = "uniq_User_email",
 		columnNames = {"email"}
 	)
 })
+@Data
+@ToString(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +42,7 @@ public class Member extends BaseEntity {
 	@Column(nullable = false, length = 30)
 	private String nickname;
 
-	@Column(nullable = false, length = 255)
+	@Column(nullable = false)
 	private String email;
 
 	private String passwd;

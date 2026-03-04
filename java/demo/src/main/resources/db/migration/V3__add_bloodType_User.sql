@@ -17,3 +17,11 @@ create table Member
 
 alter table Member
     add constraint uniq_Member_email unique (email);
+
+create table Post
+(
+    id        varchar(20)                         not null primary key,
+    createdAt timestamp default CURRENT_TIMESTAMP not null,
+    updatedAt timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    title     varchar(255)                        null
+);
