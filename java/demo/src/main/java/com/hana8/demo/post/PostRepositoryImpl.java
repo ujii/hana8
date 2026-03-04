@@ -8,35 +8,40 @@ import org.springframework.context.annotation.Primary;
 
 // @Repository
 @Primary
-public class PostRepositoryImpl implements PostRepository {
+public class PostRepositoryImpl implements PostsRepository {
 	// 위키처럼 한 사용자가 여러 글을 쓰는 경우는 Hash Table 사용
 	// Hash Table의 method는 synchronize하기 때문에 thread-safe
-	// private final Map<Long, Post> posts = new HashMap<>();
+	// private final Map<Long, Posts> posts = new HashMap<>();
 
-	private final List<Post> posts = new ArrayList<>();
+	private final List<Posts> posts = new ArrayList<>();
 
 	@Override
-	public List<Post> findAll() {
+	public List<Posts> findAll() {
 		// return this.posts.values().stream().toList();
 		return posts;
 	}
 
 	@Override
-	public Post find(Long id) {
+	public Posts find(Long id) {
 		// return this.posts.get(id);
 		return posts.stream().filter(post -> post.getId() == id).findFirst().orElse(null);
 	}
 
 	@Override
-	public Post createPost(PostDTO post) {
+	public Posts createPost(PostsDTO post) {
 		// Long id = posts.keySet().stream().max(Long::compareTo).orElse(0L) + 1;
-		// Post newer = new Post();
+		// Posts newer = new Posts();
 		// newer.setId(id);
 		// newer.setTitle(post.getTitle());
 
-		Long id = posts.stream().max(Comparator.comparingLong(Post::getId)).orElse(null).getId() + 1L;
+		Long id = posts.stream().max(Comparator.comparingLong(Posts::getId)).orElse(null).getId() + 1L;
 
-		Post newer = Post.builder().id(id).title(post.getTitle()).body(post.getBody()).writer(post.getWriter()).build();
+		Posts newer = Posts.builder()
+			.id(id)
+			.title(post.getTitle())
+			.body(post.getBody())
+			.writer(post.getWriter())
+			.build();
 
 		// posts.put(id, newer);
 		posts.add(newer);
@@ -45,9 +50,9 @@ public class PostRepositoryImpl implements PostRepository {
 	}
 
 	@Override
-	public Post updatePost(PostDTO post) {
-		// Post oldPost = posts.get(post.getId());
-		Post oldPost = posts.stream().filter(op -> op.getId() == post.getId()).findFirst().get();
+	public Posts updatePost(PostsDTO post) {
+		// Posts oldPost = posts.get(post.getId());
+		Posts oldPost = posts.stream().filter(op -> op.getId() == post.getId()).findFirst().get();
 		oldPost.setTitle(post.getTitle());
 		oldPost.setBody(post.getBody());
 		// oldPost.setWriter(post.getWriter());
