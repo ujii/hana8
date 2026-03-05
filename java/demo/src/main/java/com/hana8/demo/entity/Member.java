@@ -39,6 +39,7 @@ public class Member extends BaseEntity {
 	@Column(columnDefinition = "int unsigned")
 	private Long id;
 
+	// @Column(columnDefinition = "varchar(30) not null")
 	@Column(nullable = false, length = 30)
 	private String nickname;
 
@@ -48,9 +49,8 @@ public class Member extends BaseEntity {
 	private String passwd;
 
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
 	private BloodType bloodType;
 
 	@ColumnDefault("false")
-	private boolean isActive;
+	private Boolean isActive;
 }
