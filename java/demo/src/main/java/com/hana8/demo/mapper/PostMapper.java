@@ -3,7 +3,6 @@ package com.hana8.demo.mapper;
 import org.mapstruct.Mapper;
 
 import com.hana8.demo.dto.PostDTO;
-import com.hana8.demo.entity.Member;
 import com.hana8.demo.entity.Post;
 
 @Mapper(componentModel = "spring")
@@ -12,5 +11,5 @@ public interface PostMapper {
 	// @Mapping(target = "passwd", ignore = true)
 	PostDTO toDTO(Post post);
 
-	Member toEntity(PostDTO dto);
+	Post toEntity(PostDTO dto);
 }
