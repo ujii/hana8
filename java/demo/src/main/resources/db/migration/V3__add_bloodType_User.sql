@@ -51,7 +51,7 @@ create table Reply
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP                             not null,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP not null,
     reply     varchar(255)                                                    not null,
-    replyer   varchar(31)                                                     not null,
+    replier   varchar(31)                                                     not null,
     post      int unsigned                                                    not null,
     primary key (id)
 );
