@@ -8,12 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 
 import com.hana8.demo.common.enums.BloodType;
 import com.hana8.demo.entity.Member;
 
-@Rollback(true)
 class MemberRepositoryTest extends BaseRepositoryTest {
 	private static long id;
 	private static long orgCount = 0;
@@ -55,7 +53,6 @@ class MemberRepositoryTest extends BaseRepositoryTest {
 	@Order(2)
 	void readTest() {
 		List<Member> all = repository.findAll();
-		System.out.println("all = " + all);
 		long cnt = repository.count();
 		assertThat(cnt).isEqualTo(all.size());
 
