@@ -6,6 +6,9 @@ build/
 !**/src/test/**/build/
 
 logs
+tmp
+upload
+secure
 
 db.properties
 mail.properties
